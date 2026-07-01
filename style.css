@@ -788,6 +788,10 @@ tbody tr:nth-child(even) {
    5 e 6. ESTILIZAÇÃO EXCLUSIVA: MELHORES CONDIÇÕES (.condicoes-card) 
    (IGUAL AO LAYOUT DA MARGEM DE SEGURANÇA SOLICITADO)
 =========================================================== */
+.card.condicoes-card .titulo-melhores-condicoes {
+  background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+}
+
 .condicoes-card .dashboard {
   display: grid;
   grid-template-columns: repeat(
