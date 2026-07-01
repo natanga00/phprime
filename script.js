@@ -2,7 +2,9 @@
     PH PRIME PROMOTORA
 =========================================================*/
 
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(
+  ".card, .card-condicoes-mg, .card-condicoes-sp",
+);
 
 const hora = document.getElementById("hora");
 
