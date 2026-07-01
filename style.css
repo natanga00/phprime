@@ -1,0 +1,785 @@
+/* ===========================================================
+   1. RESET, VARIÁVEIS E CONFIGURAÇÃO GLOBAL (TV 32" 1280x720)
+=========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --card2: #273549;
+  --line: #334155;
+  --text: #ffffff;
+  --text2: #cbd5e1;
+  --shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+
+  filter: contrast(120%) brightness(95%) saturate(110%);
+}
+
+/* ===========================================================
+   2. HEADER, MENUS E ELEMENTOS FIXOS
+=========================================================== */
+header {
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  box-shadow: var(--shadow);
+}
+
+.empresa h1 {
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.painel {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.relogio,
+.contador {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.titulo-painel {
+  font-size: 11px;
+  color: #93c5fd;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+#hora,
+#timer {
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.menu-bancos {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 25px;
+  background: #131c2e;
+  border-bottom: 1px solid var(--line);
+}
+
+.btn-banco {
+  background: var(--card);
+  color: var(--text2);
+  border: 1px solid var(--line);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-banco.active {
+  background: #2563eb;
+  color: white;
+  border-color: #3b82f6;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+}
+
+/* BARRA DE PROGRESSO TIMING */
+.progresso {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  background: #1e293b;
+}
+
+.barra {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+}
+
+/* ===========================================================
+   3. ESTRUTURA BASE DOS CARDS (MAIN & DASHBOARD)
+=========================================================== */
+main {
+  width: 100vw;
+  height: calc(100vh - 111px);
+  position: relative;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 12px;
+}
+
+.card.ativo {
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+.dashboard {
+  flex: 1;
+  display: grid;
+  gap: 12px;
+  overflow: hidden;
+  grid-template-columns: 53% 47%;
+}
+
+.principal {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.principal h2 {
+  color: #60a5fa;
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+  flex-shrink: 0;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.box {
+  flex: 1;
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* TABELAS GERAIS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead th {
+  padding: 8px 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  background: #3a475c;
+  text-align: center;
+}
+
+tbody td {
+  padding: 9px 6px;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+tbody tr:nth-child(odd) {
+  background: #233146;
+}
+tbody tr:nth-child(even) {
+  background: #2b3a50;
+}
+
+.nao {
+  background: #b91c1c !important;
+}
+.nao td {
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 14.5px;
+}
+
+.valor {
+  color: #22c55e;
+  font-weight: 700;
+}
+.prazo {
+  color: #facc15;
+  font-weight: 600;
+}
+.idade {
+  color: #e2e8f0;
+}
+
+/* LISTAS GERAIS DOS CARDS */
+.box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.box li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #f1f5f9;
+}
+.box li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: 900;
+}
+
+/* DESTAQUES DE TEXTO */
+.destaque {
+  font-weight: 700;
+  color: #ffffff;
+}
+.destaque-verde {
+  color: #22c55e;
+  font-weight: 700;
+}
+.destaque-vermelho {
+  color: #ef4444;
+  font-weight: 700;
+}
+.destaque-amarelo {
+  color: #facc15;
+  font-weight: 700;
+}
+
+/* ===========================================================
+   4. ESTRUTURA ISOLADA: DAYCOVAL
+=========================================================== */
+.daycoval-card .titulo-daycoval {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+/* Estilo para a mini tabela interna do Daycoval */
+.daycoval-card .box table.mini {
+  width: 100%;
+  border-collapse: collapse;
+}
+.daycoval-card .box table.mini td {
+  padding: 6px;
+  font-size: 28px;
+  color: #f1f5f9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.daycoval-card .dashboard {
+  grid-template-columns: 46% 54%;
+  height: calc(100% - 52px);
+}
+
+.daycoval-card .principal tbody td {
+  padding: 8px 5px;
+  font-size: 22px;
+}
+
+.daycoval-card aside .box {
+  padding: 14px 18px;
+}
+
+.daycoval-card .box h3 {
+  color: #f59e0b; /* Laranja identidade BMG */
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.daycoval-card .box ul li {
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.daycoval-card .principal thead th {
+  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
+  letter-spacing: 0.5px; /* Espaçamento entre as letras */
+  font-size: 18px;
+}
+
+.daycoval-card .principal h2 {
+  color: #38bdf8; /* Cor do texto */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
+  margin-bottom: 12px; /* Espaço entre ele e a tabela */
+  /* Adicione outras propriedades personalizadas aqui */
+}
+
+/* Alteração do H3 (Títulos dos Boxes Laterais) */
+.daycoval-card aside .box h3 {
+  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  margin-bottom: 8px; /* Espaço abaixo do título */
+  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
+  padding-bottom: 4px; /* Espaço entre o texto e a linha */
+}
+
+/* ===========================================================
+   5. ESTRUTURA ISOLADA: BANCO BMG
+=========================================================== */
+.bmg-card .titulo-bmg {
+  background: linear-gradient(90deg, #6d28d9, #8b5cf6);
+}
+
+.bmg-card .dashboard {
+  grid-template-columns: 46% 54%;
+  height: calc(100% - 52px);
+}
+
+.bmg-card .principal tbody td {
+  padding: 8px 5px;
+  font-size: 22px;
+}
+
+.bmg-card aside .box {
+  padding: 14px 18px;
+}
+
+.bmg-card .box h3 {
+  color: #f59e0b; /* Laranja identidade BMG */
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.bmg-card .box ul li {
+  font-size: 25px;
+  line-height: 1.45;
+}
+
+.bmg-card .principal thead th {
+  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
+  letter-spacing: 0.5px; /* Espaçamento entre as letras */
+  font-size: 18px;
+}
+
+.bmg-card .principal h2 {
+  color: #38bdf8; /* Cor do texto */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
+  margin-bottom: 12px; /* Espaço entre ele e a tabela */
+  /* Adicione outras propriedades personalizadas aqui */
+}
+
+/* Alteração do H3 (Títulos dos Boxes Laterais) */
+.bmg-card aside .box h3 {
+  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  margin-bottom: 8px; /* Espaço abaixo do título */
+  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
+  padding-bottom: 4px; /* Espaço entre o texto e a linha */
+}
+
+/* ===========================================================
+   6. ESTRUTURA ISOLADA: DIGIO
+=========================================================== */
+.digio-card .titulo-digio {
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+}
+
+.digio-card .dashboard {
+  grid-template-columns: 46% 54%;
+  height: calc(100% - 52px);
+}
+
+.digio-card .principal tbody td {
+  padding: 5.5px 4px;
+  font-size: 20px;
+}
+
+.digio-card aside .box {
+  padding: 14px 18px;
+}
+
+.digio-card .box h3 {
+  color: #60a5fa;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.digio-card .box ul li {
+  font-size: 25px;
+  line-height: 1.4;
+}
+
+.digio-card .principal thead th {
+  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
+  letter-spacing: 0.5px; /* Espaçamento entre as letras */
+  font-size: 18px;
+}
+
+.digio-card .principal h2 {
+  color: #38bdf8; /* Cor do texto */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
+  margin-bottom: 12px; /* Espaço entre ele e a tabela */
+  /* Adicione outras propriedades personalizadas aqui */
+}
+
+/* Alteração do H3 (Títulos dos Boxes Laterais) */
+.digio-card aside .box h3 {
+  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  margin-bottom: 8px; /* Espaço abaixo do título */
+  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
+  padding-bottom: 4px; /* Espaço entre o texto e a linha */
+}
+
+/* ===========================================================
+   7. ESTRUTURA ISOLADA: AMIGOZ
+=========================================================== */
+.amigoz-card .titulo-amigoz {
+  background: linear-gradient(90deg, #0891b2, #06b6d4);
+}
+
+.amigoz-card .dashboard {
+  grid-template-columns: 46% 54%;
+  height: calc(100% - 52px);
+}
+
+.amigoz-card .principal thead th {
+  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
+  letter-spacing: 0.5px; /* Espaçamento entre as letras */
+  font-size: 18px;
+}
+
+.amigoz-card .principal tbody td {
+  padding: 10px 4px;
+  font-size: 20px;
+}
+
+.amigoz-card aside {
+  gap: 12px;
+  height: 100%;
+}
+
+.amigoz-card aside .box {
+  padding: 12px 14px;
+}
+
+.amigoz-card .box h3 {
+  color: #22c55e;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+/* Tabela interna de limites adicionais */
+.amigoz-card .box table.mini {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.amigoz-card .box table.mini thead th {
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 20px;
+  padding: 5px;
+  color: #cbd5e1;
+}
+
+.amigoz-card .box table.mini tbody tr {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.amigoz-card .box table.mini tbody td {
+  padding: 6px 4px;
+  font-size: 20px;
+  color: #f1f5f9;
+}
+
+.amigoz-card .box ul li {
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.amigoz-card .principal h2 {
+  color: #38bdf8; /* Cor do texto */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
+  margin-bottom: 12px; /* Espaço entre ele e a tabela */
+  /* Adicione outras propriedades personalizadas aqui */
+}
+
+/* Alteração do H3 (Títulos dos Boxes Laterais) */
+.amigoz-card aside .box h3 {
+  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
+  font-size: 25px; /* Tamanho do texto */
+  font-weight: 600; /* Deixa em negrito */
+  margin-bottom: 8px; /* Espaço abaixo do título */
+  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
+  padding-bottom: 4px; /* Espaço entre o texto e a linha */
+}
+
+/* ===========================================================
+   8. ESTRUTURA ISOLADA: GOVERNO DE SÃO PAULO
+=========================================================== */
+.govsp-card .titulo-govsp {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+.govsp-card .gov-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.govsp-card .gov-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.govsp-card .gov-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #1e293b;
+  border-left: 5px solid #ef4444;
+  box-shadow: var(--shadow);
+}
+
+.govsp-card .gov-item h4 {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.govsp-card .gov-item p {
+  color: #22c55e;
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Bloco de Observações Word (Gov SP) */
+.govsp-card .gov-observacoes {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.govsp-card .gov-observacoes h3 {
+  color: #60a5fa;
+  font-size: 22px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+
+.govsp-card .gov-observacoes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.govsp-card .gov-observacoes li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #e2e8f0;
+}
+
+.govsp-card .gov-observacoes li::before {
+  content: "»";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* ===========================================================
+   9. ESTRUTURA ISOLADA: MARGEM DE SEGURANÇA (GOVSP)
+=========================================================== */
+.margem-card .titulo-margem {
+  background: linear-gradient(
+    90deg,
+    #dc2626,
+    #ef4444
+  ); /* Combinando com Gov SP */
+}
+
+.margem-card .dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: calc(100% - 52px);
+  overflow: hidden;
+}
+
+.margem-card .principal {
+  padding: 10px;
+  background: var(--card);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: var(--shadow);
+  border-top: 3px solid #ef4444;
+}
+
+.margem-card .principal h2 {
+  font-size: 25px;
+  color: #60a5fa;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-weight: 700;
+}
+
+.margem-card .principal table {
+  width: 100%;
+  height: auto;
+}
+
+.margem-card .principal tbody td {
+  padding: 5px 2px;
+  font-size: 22px;
+  line-height: 1.3;
+  text-align: center;
+  color: #f1f5f9;
+  font-weight: 500;
+  border-bottom: none;
+  background: transparent !important;
+}
+
+/* ===========================================================
+   9. ESTRUTURA ISOLADA: MARGEM DE SEGURANÇA (GOVMG)
+=========================================================== */
+
+/* Aplica o gradiente correto no título da barra superior de MG */
+.card.margem-mg-card .titulo-margem-mg {
+  background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+}
+
+/* Define a estrutura de grade do quadro (3 colunas por 3 linhas) */
+.card.margem-mg-card .dashboard {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: repeat(3, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: calc(100% - 52px) !important;
+  overflow: hidden !important;
+}
+
+/* Estiliza cada bloco interno/caixa de banco */
+.card.margem-mg-card .principal {
+  padding: 10px !important;
+  background: var(--card) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  box-shadow: var(--shadow) !important;
+  border-top: 3px solid #ef4444 !important;
+  margin: 0 !important;
+  border-left: none !important;
+  width: 100% !important; /* Corrigido de 150% para 100% para alinhar perfeitamente na grade da TV */
+}
+
+/* Formata o H2 (Nome do Banco) centralizado e grande para a TV */
+.card.margem-mg-card .principal h2 {
+  font-size: 24px !important; /* Reduzido levemente de 25px para melhor aproveitamento */
+  color: #60a5fa !important;
+  margin-bottom: 6px !important;
+  padding-bottom: 3px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: normal !important;
+}
+
+/* Ajusta a tabela interna */
+.card.margem-mg-card .principal table {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Formata as linhas de texto grandes e limpas */
+.card.margem-mg-card .principal tbody td {
+  padding: 5px 2px !important;
+  font-size: 19px !important; /* Ajustado de 20px para garantir que caiba em resoluções menores */
+  line-height: 1.2 !important;
+  text-align: center !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+/* Regra específica para textos informativos mais compridos (Ex: Aki Capital) */
+.card.margem-mg-card .texto-longo td {
+  font-size: 15px !important; /* Fonte menor para que o texto não quebre feio na TV */
+  text-align: left !important;
+  line-height: 1.3 !important;
+}
