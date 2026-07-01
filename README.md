@@ -1,6 +1,6 @@
 Markdown# 📊 Painel PH Prime • Consulta Rápida
 
-Um painel de visualização de dados desenvolvido especificamente para **TV de 32" (resolução 1280x720)**, projetado para otimizar o dia a dia da equipe da **PH Prime Promotora**. O sistema rotaciona automaticamente entre diferentes "cards" informativos contendo regras, limites operacionais, prazos e margens de segurança de vários bancos parceiros e órgãos governamentais.
+Um painel de visualização de dados projetado para otimizar o dia a dia da equipe da **PH Prime Promotora**. O sistema rotaciona automaticamente entre diferentes "cards" informativos contendo regras, limites operacionais, prazos e margens de segurança de vários bancos parceiros e órgãos governamentais.
 
 ---
 
