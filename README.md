@@ -7,7 +7,6 @@ Um painel de visualização de dados projetado para otimizar o dia a dia da equi
 ## 🚀 Funcionalidades
 
 - **Rotação Automática (Carrossel):** Os cartões informativos alternam automaticamente a cada 30 segundos.
-- **Barra de Progresso Visual:** Uma linha de carregamento fluida no rodapé indica quanto tempo resta até a próxima transição.
 - **Relógio em Tempo Real:** Exibição contínua do horário local atualizado segundo a segundo.
 - **Controle Manual por Teclado:** Atalhos práticos para os operadores pausarem ou avançarem os cards sem esperar o temporizador:
   - `Seta para a Direita`: Pula imediatamente para o próximo card.
