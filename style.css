@@ -885,3 +885,125 @@ tbody tr:nth-child(even) {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
+
+/* ===========================================================
+   11. ESTRUTURA ISOLADA: NOVO CONTRATADO GOV SP (.card-novo-daycoval)
+=========================================================== */
+
+/* Comportamento padrão de card oculto */
+.card-novo-daycoval {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 12px;
+  flex-direction: column;
+}
+
+/* Quando estiver ativo no carrossel da TV */
+.card-novo-daycoval.ativo {
+  display: flex !important;
+}
+
+/* Título superior em azul escuro/destaque Daycoval */
+.titulo-novo-daycoval {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #1e3a8a, #0284c7) !important;
+}
+
+/* Estrutura de grade em 3 colunas perfeitas para a TV */
+.card-novo-daycoval .dashboard-grade {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: calc(100% - 52px) !important;
+  overflow: hidden !important;
+}
+
+/* Blocos internos das Regras */
+.bloco-regra {
+  padding: 14px !important;
+  background: var(--card) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  box-shadow: var(--shadow) !important;
+  border-top: 3px solid #0284c7 !important; /* Linha superior azul */
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Títulos das colunas internas */
+.bloco-regra h2 {
+  font-size: 22px !important;
+  color: #60a5fa !important;
+  margin-bottom: 12px !important;
+  padding-bottom: 5px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+/* Tabelas internas */
+.bloco-regra table {
+  width: 100% !important;
+  height: auto !important;
+  border-collapse: collapse;
+}
+
+/* Formatação do texto interno grande para TV */
+.bloco-regra tbody td {
+  padding: 8px 4px !important;
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+/* Alinhamento da esquerda para rótulos e direita para os valores */
+.bloco-regra tbody td:first-child:not([colspan]) {
+  text-align: left !important;
+}
+.bloco-regra tbody td:last-child:not([colspan]) {
+  text-align: right !important;
+}
+
+/* Mensagem em vermelho de atenção para ausência de margem de segurança */
+.alerta-seguranca {
+  background: #b91c1c !important;
+}
+.alerta-seguranca td {
+  text-align: center !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 4px;
+  padding: 10px 4px !important;
+}
+
+/* Tarja laranja de aviso para o desconto de 3 meses no prazo */
+.alerta-desconto {
+  background: #d97706 !important;
+}
+.alerta-desconto td {
+  text-align: center !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  border-radius: 4px;
+  padding: 10px 4px !important;
+}

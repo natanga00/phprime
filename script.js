@@ -3,7 +3,7 @@
 =========================================================*/
 
 const cards = document.querySelectorAll(
-  ".card, .card-condicoes-mg, .card-condicoes-sp",
+  ".card, .card-condicoes-mg, .card-condicoes-sp, .card-novo-daycoval",
 );
 
 const hora = document.getElementById("hora");
