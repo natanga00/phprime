@@ -1034,7 +1034,7 @@ tbody tr:nth-child(even) {
   align-items: center;
   margin-bottom: 10px;
   border-radius: 8px;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 0.5px;
   box-shadow: var(--shadow);
@@ -1068,7 +1068,7 @@ tbody tr:nth-child(even) {
 
 /* Cabeçalhos internos das caixas */
 .bloco-ocred h2 {
-  font-size: 22px !important;
+  font-size: 30px !important;
   color: #f97316 !important;
   margin-bottom: 12px !important;
   padding-bottom: 5px !important;
@@ -1086,7 +1086,7 @@ tbody tr:nth-child(even) {
 
 .bloco-ocred tbody td {
   padding: 6px 4px !important;
-  font-size: 25px !important;
+  font-size: 30px !important;
   color: #f1f5f9 !important;
   font-weight: 500 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
@@ -1096,7 +1096,7 @@ tbody tr:nth-child(even) {
 /* Estilo para a tabela de Tickets Médios (Coluna do Meio) */
 .bloco-ocred table.tabela-valores tbody td {
   padding: 4.5px 4px !important; /* Tamanho exato para encaixar as 8 linhas na TV */
-  font-size: 14.5px !important;
+  font-size: 20px !important;
 }
 
 .bloco-ocred td.orgao {
@@ -1112,7 +1112,7 @@ tbody tr:nth-child(even) {
 
 /* Destaque para os maiores valores (Coluna da Esquerda) */
 .bloco-ocred td.valor-alto {
-  font-size: 25px !important;
+  font-size: 30px !important;
   color: #22c55e !important;
   font-weight: 800 !important;
   text-align: center !important;
@@ -1149,7 +1149,7 @@ tbody tr:nth-child(even) {
 }
 
 .insight-item .marcador {
-  font-size: 25px;
+  font-size: 30px;
   line-height: 1;
 }
 
@@ -1162,7 +1162,7 @@ tbody tr:nth-child(even) {
 }
 
 .insight-item p {
-  font-size: 25px !important;
+  font-size: 30px !important;
   line-height: 1.4 !important;
   color: #f1f5f9 !important;
   margin: 0;
