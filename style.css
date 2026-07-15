@@ -1007,3 +1007,163 @@ tbody tr:nth-child(even) {
   border-radius: 4px;
   padding: 10px 4px !important;
 }
+
+/* ===========================================================
+   12. ESTRUTURA ISOLADA: BANCO OCRED MASTER (.card-ocred-master)
+=========================================================== */
+
+/* Garante o comportamento do carrossel da TV */
+.card-ocred-master {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 12px;
+  flex-direction: column;
+}
+
+/* Quando ativo na tela */
+.card-ocred-master.ativo {
+  display: flex !important;
+}
+
+/* Título em degradê luxo ouro/laranja para combinar com bandeira Master */
+.titulo-ocred-master {
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #ea580c, #f97316) !important;
+}
+
+/* Grid perfeitamente dividido em 3 colunas para preenchimento da tela */
+.card-ocred-master .dashboard-grade {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: calc(100% - 52px) !important;
+  overflow: hidden !important;
+}
+
+/* Blocos internos das Colunas */
+.bloco-ocred {
+  padding: 14px !important;
+  background: var(--card) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  box-shadow: var(--shadow) !important;
+  border-top: 3px solid #f97316 !important; /* Linha superior laranja */
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Cabeçalhos internos das caixas */
+.bloco-ocred h2 {
+  font-size: 22px !important;
+  color: #f97316 !important;
+  margin-bottom: 12px !important;
+  padding-bottom: 5px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+/* Tabelas de valores internas */
+.bloco-ocred table {
+  width: 100% !important;
+  border-collapse: collapse;
+}
+
+.bloco-ocred tbody td {
+  padding: 6px 4px !important;
+  font-size: 15px !important;
+  color: #f1f5f9 !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: transparent !important;
+}
+
+/* Estilo para a tabela de Tickets Médios (Coluna do Meio) */
+.bloco-ocred table.tabela-valores tbody td {
+  padding: 4.5px 4px !important; /* Tamanho exato para encaixar as 8 linhas na TV */
+  font-size: 14.5px !important;
+}
+
+.bloco-ocred td.orgao {
+  text-align: left !important;
+  color: #cbd5e1 !important;
+}
+
+.bloco-ocred td.valor {
+  text-align: right !important;
+  color: #22c55e !important;
+  font-weight: 700 !important;
+}
+
+/* Destaque para os maiores valores (Coluna da Esquerda) */
+.bloco-ocred td.valor-alto {
+  font-size: 24px !important;
+  color: #22c55e !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  padding-bottom: 12px !important;
+  border-bottom: none !important;
+}
+
+.bloco-ocred td.valor-alto + tr td {
+  padding-top: 8px !important;
+}
+
+/* Área de Insights Estratégicos (Coluna da Direita) */
+.insight-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.insight-item {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 12px 14px;
+  border-left: 4px solid #f97316;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  box-shadow: var(--shadow);
+}
+
+.insight-item.destaque-sucesso {
+  border-left-color: #22c55e;
+  background: #14532d; /* Fundo verde escuro para chamar a atenção */
+}
+
+.insight-item .marcador {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.insight-item:not(.destaque-sucesso) .marcador {
+  color: #facc15;
+}
+
+.insight-item.destaque-sucesso .marcador {
+  color: #4ade80;
+}
+
+.insight-item p {
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  color: #f1f5f9 !important;
+  margin: 0;
+}
