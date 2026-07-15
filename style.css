@@ -1028,7 +1028,7 @@ tbody tr:nth-child(even) {
 
 /* Título em degradê luxo ouro/laranja para combinar com bandeira Master */
 .titulo-ocred-master {
-  height: 35px;
+  height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
