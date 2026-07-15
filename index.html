@@ -10,13 +10,11 @@
       rel="stylesheet"
     />
   </head>
-
   <body>
     <header>
       <div class="empresa">
         <h1>PH PRIME PROMOTORA</h1>
       </div>
-
       <div class="painel">
         <div class="relogio">
           <div id="hora">00:00:00</div>
@@ -25,7 +23,8 @@
     </header>
 
     <main>
-      <section class="card amigoz-card">
+      <!-- AMIGOZ (GOV-MG) -->
+      <section class="card amigoz-card ativo">
         <div class="titulo titulo-amigoz">AMIGOZ (GOV-MG)</div>
         <div class="dashboard">
           <div class="principal">
@@ -118,6 +117,7 @@
         </div>
       </section>
 
+      <!-- GOVERNO DE SÃO PAULO (IDADES MÁXIMAS) -->
       <section class="card govsp-card">
         <div class="titulo titulo-govsp">
           GOVERNO DE SÃO PAULO (IDADES MÁXIMAS)
@@ -202,6 +202,7 @@
         </div>
       </section>
 
+      <!-- MARGEM DE SEGURANÇA (GOVSP) -->
       <section class="card margem-card">
         <div class="titulo titulo-margem">MARGEM DE SEGURANÇA (GOVSP)</div>
         <div class="dashboard">
@@ -226,9 +227,11 @@
             <h2>HOPE</h2>
             <table>
               <tbody>
-                <td class="valor" style="font-size: 16px; margin-top: 5px">
-                  ★ HOPE ATENDE NÃO PERTURBE
-                </td>
+                <tr>
+                  <td class="valor" style="font-size: 16px; margin-top: 5px">
+                    ★ HOPE ATENDE NÃO PERTURBE
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -339,6 +342,7 @@
         </div>
       </section>
 
+      <!-- MARGEM DE SEGURANÇA (GOVMG) -->
       <section class="card margem-mg-card">
         <div class="titulo titulo-margem-mg">MARGEM DE SEGURANÇA (GOVMG)</div>
         <div class="dashboard">
@@ -459,9 +463,10 @@
         </div>
       </section>
 
-      <section class="card-condicoes-mg">
+      <!-- MELHORES CONDIÇÕES MG -->
+      <section class="card card-condicoes-mg">
         <div class="titulo-condicoes-mg">
-          GOVERNO DE MINAS MELHORES CONDICOES COMERCIAS
+          GOVERNO DE MINAS MELHORES CONDIÇÕES COMERCIAIS
         </div>
         <div class="dashboard-grade">
           <div class="bloco-opcao">
@@ -517,9 +522,10 @@
         </div>
       </section>
 
-      <section class="card-condicoes-sp">
+      <!-- MELHORES CONDIÇÕES SP -->
+      <section class="card card-condicoes-sp">
         <div class="titulo-condicoes-sp">
-          GOVERNO DE SÃO PAULO MELHORES CONDICOES COMERCIAS
+          GOVERNO DE SÃO PAULO MELHORES CONDIÇÕES COMERCIAIS
         </div>
         <div class="dashboard-grade">
           <div class="bloco-opcao">
@@ -593,8 +599,9 @@
         </div>
       </section>
 
+      <!-- NOVO DAYCOVAL GOV SP -->
       <section class="card card-novo-daycoval">
-        <div class="titulo titulo-novo-daycoval">
+        <div class="titulo-novo-daycoval">
           ATENÇÃO NOVO • BANCO QUE ATENDE CONTRATADO GOV SÃO PAULO
         </div>
         <div class="dashboard-grade">
@@ -678,8 +685,9 @@
         </div>
       </section>
 
+      <!-- COMPRA MASTER OCRED -->
       <section class="card card-ocred-master">
-        <div class="titulo titulo-ocred-master">
+        <div class="titulo-ocred-master">
           BANCO OCRED • COMPRA DE CARTÃO MASTER
         </div>
         <div class="dashboard-grade">
@@ -772,6 +780,11 @@
         </div>
       </section>
     </main>
+
+    <!-- Barra de Timing Inferior -->
+    <div class="progresso">
+      <div class="barra"></div>
+    </div>
 
     <script src="script.js"></script>
   </body>

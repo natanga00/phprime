@@ -10,7 +10,6 @@
 :root {
   --bg: #0f172a;
   --card: #1e293b;
-  --card2: #273549;
   --line: #334155;
   --text: #ffffff;
   --text2: #cbd5e1;
@@ -25,12 +24,11 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: "Poppins", sans-serif;
-
   filter: contrast(120%) brightness(95%) saturate(110%);
 }
 
 /* ===========================================================
-   2. HEADER, MENUS E ELEMENTOS FIXOS
+   2. HEADER E ELEMENTOS FIXOS
 =========================================================== */
 header {
   height: 65px;
@@ -43,65 +41,15 @@ header {
 }
 
 .empresa h1 {
-  font-size: 50px;
+  font-size: 32px;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
-.painel {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.relogio,
-.contador {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.titulo-painel {
-  font-size: 11px;
-  color: #93c5fd;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-#hora,
-#timer {
-  font-size: 40px;
+#hora {
+  font-size: 30px;
   font-weight: 700;
   color: #ffffff;
-}
-
-.menu-bancos {
-  height: 46px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 25px;
-  background: #131c2e;
-  border-bottom: 1px solid var(--line);
-}
-
-.btn-banco {
-  background: var(--card);
-  color: var(--text2);
-  border: 1px solid var(--line);
-  padding: 6px 16px;
-  border-radius: 6px;
-  font-size: 13.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-banco.active {
-  background: #2563eb;
-  color: white;
-  border-color: #3b82f6;
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
 }
 
 /* BARRA DE PROGRESSO TIMING */
@@ -118,6 +66,7 @@ header {
   width: 0;
   height: 100%;
   background: linear-gradient(90deg, #22c55e, #3b82f6);
+  transition: width 1s linear;
 }
 
 /* ===========================================================
@@ -125,23 +74,35 @@ header {
 =========================================================== */
 main {
   width: 100vw;
-  height: calc(100vh - 111px);
+  height: calc(100vh - 70px);
   position: relative;
 }
 
-.card {
+.card,
+.card-condicoes-mg,
+.card-condicoes-sp,
+.card-novo-daycoval,
+.card-ocred-master {
   position: absolute;
   inset: 0;
   display: none;
   padding: 12px;
-}
-
-.card.ativo {
-  display: flex;
   flex-direction: column;
 }
 
-.titulo {
+.card.ativo,
+.card-condicoes-mg.ativo,
+.card-condicoes-sp.ativo,
+.card-novo-daycoval.ativo,
+.card-ocred-master.ativo {
+  display: flex !important;
+}
+
+.titulo,
+.titulo-condicoes-mg,
+.titulo-condicoes-sp,
+.titulo-novo-daycoval,
+.titulo-ocred-master {
   height: 42px;
   display: flex;
   justify-content: center;
@@ -175,19 +136,17 @@ main {
 
 .principal h2 {
   color: #60a5fa;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 10px;
   font-weight: 700;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 4px;
-  flex-shrink: 0;
 }
 
 aside {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  overflow: hidden;
 }
 
 .box {
@@ -205,7 +164,6 @@ aside {
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
 }
 
 thead th {
@@ -239,7 +197,6 @@ tbody tr:nth-child(even) {
 .nao td {
   color: #ffffff !important;
   font-weight: 800;
-  font-size: 14.5px;
 }
 
 .valor {
@@ -254,7 +211,7 @@ tbody tr:nth-child(even) {
   color: #e2e8f0;
 }
 
-/* LISTAS GERAIS DOS CARDS */
+/* LISTAS GERAIS */
 .box ul {
   list-style: none;
   display: flex;
@@ -264,8 +221,7 @@ tbody tr:nth-child(even) {
 .box li {
   position: relative;
   padding-left: 20px;
-  font-size: 13.5px;
-  line-height: 1.4;
+  font-size: 14px;
   color: #f1f5f9;
 }
 .box li::before {
@@ -276,312 +232,44 @@ tbody tr:nth-child(even) {
   font-weight: 900;
 }
 
-/* DESTAQUES DE TEXTO */
-.destaque {
-  font-weight: 700;
-  color: #ffffff;
-}
-.destaque-verde {
-  color: #22c55e;
-  font-weight: 700;
-}
 .destaque-vermelho {
   color: #ef4444;
   font-weight: 700;
 }
-.destaque-amarelo {
-  color: #facc15;
-  font-weight: 700;
-}
 
 /* ===========================================================
-   4. ESTRUTURA ISOLADA: DAYCOVAL
-=========================================================== */
-.daycoval-card .titulo-daycoval {
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-}
-
-/* Estilo para a mini tabela interna do Daycoval */
-.daycoval-card .box table.mini {
-  width: 100%;
-  border-collapse: collapse;
-}
-.daycoval-card .box table.mini td {
-  padding: 6px;
-  font-size: 28px;
-  color: #f1f5f9;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.daycoval-card .dashboard {
-  grid-template-columns: 46% 54%;
-  height: calc(100% - 52px);
-}
-
-.daycoval-card .principal tbody td {
-  padding: 8px 5px;
-  font-size: 22px;
-}
-
-.daycoval-card aside .box {
-  padding: 14px 18px;
-}
-
-.daycoval-card .box h3 {
-  color: #f59e0b; /* Laranja identidade BMG */
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.daycoval-card .box ul li {
-  font-size: 22px;
-  line-height: 1.45;
-}
-
-.daycoval-card .principal thead th {
-  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
-  letter-spacing: 0.5px; /* Espaçamento entre as letras */
-  font-size: 18px;
-}
-
-.daycoval-card .principal h2 {
-  color: #38bdf8; /* Cor do texto */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
-  margin-bottom: 12px; /* Espaço entre ele e a tabela */
-  /* Adicione outras propriedades personalizadas aqui */
-}
-
-/* Alteração do H3 (Títulos dos Boxes Laterais) */
-.daycoval-card aside .box h3 {
-  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  margin-bottom: 8px; /* Espaço abaixo do título */
-  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
-  padding-bottom: 4px; /* Espaço entre o texto e a linha */
-}
-
-/* ===========================================================
-   5. ESTRUTURA ISOLADA: BANCO BMG
-=========================================================== */
-.bmg-card .titulo-bmg {
-  background: linear-gradient(90deg, #6d28d9, #8b5cf6);
-}
-
-.bmg-card .dashboard {
-  grid-template-columns: 46% 54%;
-  height: calc(100% - 52px);
-}
-
-.bmg-card .principal tbody td {
-  padding: 8px 5px;
-  font-size: 22px;
-}
-
-.bmg-card aside .box {
-  padding: 14px 18px;
-}
-
-.bmg-card .box h3 {
-  color: #f59e0b; /* Laranja identidade BMG */
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.bmg-card .box ul li {
-  font-size: 25px;
-  line-height: 1.45;
-}
-
-.bmg-card .principal thead th {
-  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
-  letter-spacing: 0.5px; /* Espaçamento entre as letras */
-  font-size: 18px;
-}
-
-.bmg-card .principal h2 {
-  color: #38bdf8; /* Cor do texto */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
-  margin-bottom: 12px; /* Espaço entre ele e a tabela */
-  /* Adicione outras propriedades personalizadas aqui */
-}
-
-/* Alteração do H3 (Títulos dos Boxes Laterais) */
-.bmg-card aside .box h3 {
-  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  margin-bottom: 8px; /* Espaço abaixo do título */
-  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
-  padding-bottom: 4px; /* Espaço entre o texto e a linha */
-}
-
-/* ===========================================================
-   6. ESTRUTURA ISOLADA: DIGIO
-=========================================================== */
-.digio-card .titulo-digio {
-  background: linear-gradient(90deg, #1e3a8a, #2563eb);
-}
-
-.digio-card .dashboard {
-  grid-template-columns: 46% 54%;
-  height: calc(100% - 52px);
-}
-
-.digio-card .principal tbody td {
-  padding: 5.5px 4px;
-  font-size: 20px;
-}
-
-.digio-card aside .box {
-  padding: 14px 18px;
-}
-
-.digio-card .box h3 {
-  color: #60a5fa;
-  font-size: 25px;
-  margin-bottom: 8px;
-}
-
-.digio-card .box ul li {
-  font-size: 25px;
-  line-height: 1.4;
-}
-
-.digio-card .principal thead th {
-  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
-  letter-spacing: 0.5px; /* Espaçamento entre as letras */
-  font-size: 18px;
-}
-
-.digio-card .principal h2 {
-  color: #38bdf8; /* Cor do texto */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
-  margin-bottom: 12px; /* Espaço entre ele e a tabela */
-  /* Adicione outras propriedades personalizadas aqui */
-}
-
-/* Alteração do H3 (Títulos dos Boxes Laterais) */
-.digio-card aside .box h3 {
-  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  margin-bottom: 8px; /* Espaço abaixo do título */
-  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
-  padding-bottom: 4px; /* Espaço entre o texto e a linha */
-}
-
-/* ===========================================================
-   7. ESTRUTURA ISOLADA: AMIGOZ
+   4. AMIGOZ
 =========================================================== */
 .amigoz-card .titulo-amigoz {
   background: linear-gradient(90deg, #0891b2, #06b6d4);
 }
-
 .amigoz-card .dashboard {
   grid-template-columns: 46% 54%;
-  height: calc(100% - 52px);
 }
-
-.amigoz-card .principal thead th {
-  text-transform: uppercase; /* Deixa tudo em MAIÚSCULO */
-  letter-spacing: 0.5px; /* Espaçamento entre as letras */
-  font-size: 18px;
-}
-
 .amigoz-card .principal tbody td {
   padding: 10px 4px;
-  font-size: 20px;
-}
-
-.amigoz-card aside {
-  gap: 12px;
-  height: 100%;
-}
-
-.amigoz-card aside .box {
-  padding: 12px 14px;
-}
-
-.amigoz-card .box h3 {
-  color: #22c55e;
-  font-size: 20px;
-  margin-bottom: 6px;
-}
-
-/* Tabela interna de limites adicionais */
-.amigoz-card .box table.mini {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.amigoz-card .box table.mini thead th {
-  background: rgba(255, 255, 255, 0.05);
-  font-size: 20px;
-  padding: 5px;
-  color: #cbd5e1;
-}
-
-.amigoz-card .box table.mini tbody tr {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.amigoz-card .box table.mini tbody td {
-  padding: 6px 4px;
-  font-size: 20px;
-  color: #f1f5f9;
-}
-
-.amigoz-card .box ul li {
   font-size: 18px;
-  line-height: 1.35;
 }
-
-.amigoz-card .principal h2 {
-  color: #38bdf8; /* Cor do texto */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  text-transform: uppercase; /* Deixa em LETRAS MAIÚSCULAS se desejar */
-  margin-bottom: 12px; /* Espaço entre ele e a tabela */
-  /* Adicione outras propriedades personalizadas aqui */
-}
-
-/* Alteração do H3 (Títulos dos Boxes Laterais) */
-.amigoz-card aside .box h3 {
-  color: #38bdf8; /* Cor diferenciada para o destaque (Ex: Azul claro) */
-  font-size: 25px; /* Tamanho do texto */
-  font-weight: 600; /* Deixa em negrito */
-  margin-bottom: 8px; /* Espaço abaixo do título */
-  border-bottom: 1px solid #334155; /* Linha sutil decorativa abaixo do H3 */
-  padding-bottom: 4px; /* Espaço entre o texto e a linha */
+.amigoz-card .box table.mini tbody td {
+  font-size: 18px;
 }
 
 /* ===========================================================
-   8. ESTRUTURA ISOLADA: GOVERNO DE SÃO PAULO
+   5. GOVERNO DE SÃO PAULO
 =========================================================== */
 .govsp-card .titulo-govsp {
   background: linear-gradient(90deg, #dc2626, #ef4444);
 }
-
 .govsp-card .gov-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
 }
-
 .govsp-card .gov-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
-
 .govsp-card .gov-item {
   display: flex;
   justify-content: space-between;
@@ -592,578 +280,223 @@ tbody tr:nth-child(even) {
   border-left: 5px solid #ef4444;
   box-shadow: var(--shadow);
 }
-
 .govsp-card .gov-item h4 {
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
 }
-
 .govsp-card .gov-item p {
   color: #22c55e;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  white-space: nowrap;
 }
-
-/* Bloco de Observações Word (Gov SP) */
 .govsp-card .gov-observacoes {
   background: #1e293b;
   border-radius: 12px;
   padding: 14px;
-  box-shadow: var(--shadow);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   margin-top: 12px;
+  flex: 1;
 }
-
 .govsp-card .gov-observacoes h3 {
   color: #60a5fa;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 8px;
-  font-weight: 700;
   border-bottom: 1px solid var(--line);
-  padding-bottom: 4px;
 }
-
-.govsp-card .gov-observacoes ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  overflow: hidden;
-}
-
 .govsp-card .gov-observacoes li {
-  position: relative;
-  padding-left: 18px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.35;
   color: #e2e8f0;
-}
-
-.govsp-card .gov-observacoes li::before {
-  content: "»";
-  position: absolute;
-  left: 0;
-  color: #3b82f6;
-  font-weight: 900;
-  font-size: 14px;
+  margin-bottom: 5px;
 }
 
 /* ===========================================================
-   9. ESTRUTURA ISOLADA: MARGEM DE SEGURANÇA (GOVSP)
+   6. GRADES DE MARGENS (GOVSP & GOVMG)
 =========================================================== */
-.margem-card .titulo-margem {
-  background: linear-gradient(
-    90deg,
-    #dc2626,
-    #ef4444
-  ); /* Combinando com Gov SP */
+.margem-card .titulo-margem,
+.card.margem-mg-card .titulo-margem-mg {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
 }
-
-.margem-card .dashboard {
+.margem-card .dashboard,
+.card.margem-mg-card .dashboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
-  width: 100%;
   height: calc(100% - 52px);
-  overflow: hidden;
 }
-
-.margem-card .principal {
+.margem-card .principal,
+.card.margem-mg-card .principal {
   padding: 10px;
-  background: var(--card);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: var(--shadow);
   border-top: 3px solid #ef4444;
 }
-
-.margem-card .principal h2 {
-  font-size: 25px;
-  color: #60a5fa;
-  margin-bottom: 6px;
-  padding-bottom: 3px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-  font-weight: 700;
-}
-
-.margem-card .principal table {
-  width: 100%;
-  height: auto;
-}
-
-.margem-card .principal tbody td {
-  padding: 5px 2px;
-  font-size: 22px;
-  line-height: 1.3;
-  text-align: center;
-  color: #f1f5f9;
-  font-weight: 500;
-  border-bottom: none;
-  background: transparent !important;
-}
-
-/* ===========================================================
-   9. ESTRUTURA ISOLADA: MARGEM DE SEGURANÇA (GOVMG)
-=========================================================== */
-
-/* Aplica o gradiente correto no título da barra superior de MG */
-.card.margem-mg-card .titulo-margem-mg {
-  background: linear-gradient(90deg, #dc2626, #ef4444) !important;
-}
-
-/* Define a estrutura de grade do quadro (3 colunas por 3 linhas) */
-.card.margem-mg-card .dashboard {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  grid-template-rows: repeat(3, 1fr) !important;
-  gap: 10px !important;
-  width: 100% !important;
-  height: calc(100% - 52px) !important;
-  overflow: hidden !important;
-}
-
-/* Estiliza cada bloco interno/caixa de banco */
-.card.margem-mg-card .principal {
-  padding: 10px !important;
-  background: var(--card) !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  box-shadow: var(--shadow) !important;
-  border-top: 3px solid #ef4444 !important;
-  margin: 0 !important;
-  border-left: none !important;
-  width: 100% !important; /* Corrigido de 150% para 100% para alinhar perfeitamente na grade da TV */
-}
-
-/* Formata o H2 (Nome do Banco) centralizado e grande para a TV */
+.margem-card .principal h2,
 .card.margem-mg-card .principal h2 {
-  font-size: 24px !important; /* Reduzido levemente de 25px para melhor aproveitamento */
-  color: #60a5fa !important;
-  margin-bottom: 6px !important;
-  padding-bottom: 3px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: normal !important;
+  font-size: 20px;
+  text-align: center;
 }
-
-/* Ajusta a tabela interna */
-.card.margem-mg-card .principal table {
-  width: 100% !important;
-  height: auto !important;
-}
-
-/* Formata as linhas de texto grandes e limpas */
+.margem-card .principal tbody td,
 .card.margem-mg-card .principal tbody td {
-  padding: 5px 2px !important;
-  font-size: 19px !important; /* Ajustado de 20px para garantir que caiba em resoluções menores */
-  line-height: 1.2 !important;
-  text-align: center !important;
-  color: #f1f5f9 !important;
-  font-weight: 500 !important;
-  border-bottom: none !important;
+  font-size: 18px;
   background: transparent !important;
+  border: none;
 }
-
-/* Regra específica para textos informativos mais compridos (Ex: Aki Capital) */
 .card.margem-mg-card .texto-longo td {
-  font-size: 15px !important; /* Fonte menor para que o texto não quebre feio na TV */
-  text-align: left !important;
-  line-height: 1.3 !important;
+  font-size: 14px !important;
+  text-align: left;
 }
 
 /* ===========================================================
-   10. ESTRUTURA EXCLUSIVA: MELHORES CONDIÇÕES (MG e SP)
+   7. MELHORES CONDIÇÕES (MG e SP)
 =========================================================== */
-
-/* Telas independentes compartilhando o comportamento padrão de card */
-.card-condicoes-mg,
-.card-condicoes-sp {
-  position: absolute;
-  inset: 0;
-  display: none; /* Controlado pelo script de alternância (.ativo) */
-  padding: 12px;
-  flex-direction: column;
-}
-
-/* Quando ativos no carrossel, herdam flex */
-.card-condicoes-mg.ativo,
-.card-condicoes-sp.ativo {
-  display: flex !important;
-}
-
-/* Títulos das barras superiores em Degradê Vermelho */
 .titulo-condicoes-mg,
 .titulo-condicoes-sp {
-  height: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
-  background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+  background: linear-gradient(90deg, #dc2626, #ef4444);
 }
-
-/* Estrutura de grade do quadro principal (3 colunas estáveis por 1 linha) */
 .card-condicoes-mg .dashboard-grade,
 .card-condicoes-sp .dashboard-grade {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 10px !important;
-  width: 100% !important;
-  height: calc(100% - 52px) !important;
-  overflow: hidden !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: calc(100% - 52px);
 }
-
-/* Blocos internos das Opções */
 .bloco-opcao {
-  padding: 14px !important;
-  background: var(--card) !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  box-shadow: var(--shadow) !important;
-  border-top: 3px solid #ef4444 !important;
-  margin: 0 !important;
-  width: 100% !important;
+  padding: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  border-top: 3px solid #ef4444;
+  box-shadow: var(--shadow);
 }
-
-/* Títulos Internos (Nome da Opção / Convênio) */
 .bloco-opcao h2 {
-  font-size: 24px !important;
-  color: #60a5fa !important;
-  margin-bottom: 10px !important;
-  padding-bottom: 5px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
+  font-size: 20px;
+  color: #60a5fa;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Ajuste das tabelas das opções */
-.bloco-opcao table {
-  width: 100% !important;
-  height: auto !important;
-  border-collapse: collapse;
-}
-
-/* Linhas de dados grandes ajustadas para leitura clara na TV de 32" */
 .bloco-opcao tbody td {
-  padding: 6px 2px !important;
-  font-size: 19px !important;
-  line-height: 1.25 !important;
-  text-align: center !important;
-  color: #f1f5f9 !important;
-  font-weight: 500 !important;
-  border-bottom: none !important;
-  background: transparent !important;
-}
-
-/* Destaque para opções ruins ou perigosas (Ex: BTW Cálculo Manual) */
-.alerta-ruim {
-  background: #b91c1c !important;
-}
-.alerta-ruim td {
-  color: #ffffff !important;
-  font-weight: 700 !important;
+  font-size: 18px;
+  text-align: center;
+  border: none;
 }
 
 /* ===========================================================
-   11. ESTRUTURA ISOLADA: NOVO CONTRATADO GOV SP (.card-novo-daycoval)
+   8. NOVO DAYCOVAL GOV SP
 =========================================================== */
-
-/* Comportamento padrão de card oculto */
-.card-novo-daycoval {
-  position: absolute;
-  inset: 0;
-  display: none;
-  padding: 12px;
-  flex-direction: column;
-}
-
-/* Quando estiver ativo no carrossel da TV */
-.card-novo-daycoval.ativo {
-  display: flex !important;
-}
-
-/* Título superior em azul escuro/destaque Daycoval */
 .titulo-novo-daycoval {
-  height: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
-  background: linear-gradient(90deg, #1e3a8a, #0284c7) !important;
+  background: linear-gradient(90deg, #1e3a8a, #0284c7);
 }
-
-/* Estrutura de grade em 3 colunas perfeitas para a TV */
 .card-novo-daycoval .dashboard-grade {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 10px !important;
-  width: 100% !important;
-  height: calc(100% - 52px) !important;
-  overflow: hidden !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: calc(100% - 52px);
 }
-
-/* Blocos internos das Regras */
 .bloco-regra {
-  padding: 14px !important;
-  background: var(--card) !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  box-shadow: var(--shadow) !important;
-  border-top: 3px solid #0284c7 !important; /* Linha superior azul */
-  margin: 0 !important;
-  width: 100% !important;
+  padding: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  border-top: 3px solid #0284c7;
+  box-shadow: var(--shadow);
 }
-
-/* Títulos das colunas internas */
 .bloco-regra h2 {
-  font-size: 22px !important;
-  color: #60a5fa !important;
-  margin-bottom: 12px !important;
-  padding-bottom: 5px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
+  font-size: 20px;
+  color: #60a5fa;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Tabelas internas */
-.bloco-regra table {
-  width: 100% !important;
-  height: auto !important;
-  border-collapse: collapse;
-}
-
-/* Formatação do texto interno grande para TV */
 .bloco-regra tbody td {
-  padding: 8px 4px !important;
-  font-size: 18px !important;
-  line-height: 1.3 !important;
-  color: #f1f5f9 !important;
-  font-weight: 500 !important;
-  border-bottom: none !important;
-  background: transparent !important;
+  font-size: 16px;
+  border: none;
 }
-
-/* Alinhamento da esquerda para rótulos e direita para os valores */
 .bloco-regra tbody td:first-child:not([colspan]) {
-  text-align: left !important;
+  text-align: left;
 }
 .bloco-regra tbody td:last-child:not([colspan]) {
-  text-align: right !important;
+  text-align: right;
 }
-
-/* Mensagem em vermelho de atenção para ausência de margem de segurança */
 .alerta-seguranca {
   background: #b91c1c !important;
 }
 .alerta-seguranca td {
   text-align: center !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  border-radius: 4px;
-  padding: 10px 4px !important;
+  font-weight: 700;
 }
-
-/* Tarja laranja de aviso para o desconto de 3 meses no prazo */
 .alerta-desconto {
   background: #d97706 !important;
 }
 .alerta-desconto td {
   text-align: center !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  border-radius: 4px;
-  padding: 10px 4px !important;
+  font-weight: 700;
 }
 
 /* ===========================================================
-   12. ESTRUTURA ISOLADA: BANCO OCRED MASTER (.card-ocred-master)
+   9. COMPRA MASTER OCRED
 =========================================================== */
-
-/* Garante o comportamento do carrossel da TV */
-.card-ocred-master {
-  position: absolute;
-  inset: 0;
-  display: none;
-  padding: 12px;
-  flex-direction: column;
-}
-
-/* Quando ativo na tela */
-.card-ocred-master.ativo {
-  display: flex !important;
-}
-
-/* Título em degradê luxo ouro/laranja para combinar com bandeira Master */
 .titulo-ocred-master {
-  height: 23px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  font-size: 23px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
-  background: linear-gradient(90deg, #ea580c, #f97316) !important;
+  background: linear-gradient(90deg, #ea580c, #f97316);
 }
-
-/* Grid perfeitamente dividido em 3 colunas para preenchimento da tela */
 .card-ocred-master .dashboard-grade {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 10px !important;
-  width: 100% !important;
-  height: calc(100% - 52px) !important;
-  overflow: hidden !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: calc(100% - 52px);
 }
-
-/* Blocos internos das Colunas */
 .bloco-ocred {
-  padding: 14px !important;
-  background: var(--card) !important;
-  border-radius: 8px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  box-shadow: var(--shadow) !important;
-  border-top: 3px solid #f97316 !important; /* Linha superior laranja */
-  margin: 0 !important;
-  width: 100% !important;
+  padding: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  border-top: 3px solid #f97316;
+  box-shadow: var(--shadow);
 }
-
-/* Cabeçalhos internos das caixas */
 .bloco-ocred h2 {
-  font-size: 23px !important;
-  color: #f97316 !important;
-  margin-bottom: 12px !important;
-  padding-bottom: 5px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  text-align: center !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
+  font-size: 20px;
+  color: #f97316;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Tabelas de valores internas */
-.bloco-ocred table {
-  width: 100% !important;
-  border-collapse: collapse;
-}
-
 .bloco-ocred tbody td {
-  padding: 6px 4px !important;
-  font-size: 23px !important;
-  color: #f1f5f9 !important;
-  font-weight: 500 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-  background: transparent !important;
+  font-size: 18px;
+  border: none;
 }
-
-/* Estilo para a tabela de Tickets Médios (Coluna do Meio) */
 .bloco-ocred table.tabela-valores tbody td {
-  padding: 4.5px 4px !important; /* Tamanho exato para encaixar as 8 linhas na TV */
-  font-size: 23px !important;
+  padding: 4.5px 4px;
+  font-size: 16px;
 }
-
 .bloco-ocred td.orgao {
-  text-align: left !important;
-  color: #cbd5e1 !important;
+  text-align: left;
+  color: #cbd5e1;
 }
-
 .bloco-ocred td.valor {
-  text-align: right !important;
-  color: #22c55e !important;
-  font-weight: 700 !important;
+  text-align: right;
+  color: #22c55e;
 }
-
-/* Destaque para os maiores valores (Coluna da Esquerda) */
 .bloco-ocred td.valor-alto {
-  font-size: 23px !important;
-  color: #22c55e !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-  padding-bottom: 12px !important;
-  border-bottom: none !important;
+  font-size: 20px;
+  color: #22c55e;
+  font-weight: 800;
+  text-align: center;
 }
 
-.bloco-ocred td.valor-alto + tr td {
-  padding-top: 8px !important;
-}
-
-/* Área de Insights Estratégicos (Coluna da Direita) */
 .insight-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 100%;
 }
-
 .insight-item {
   background: #1e293b;
   border-radius: 8px;
-  padding: 12px 14px;
+  padding: 12px;
   border-left: 4px solid #f97316;
   display: flex;
   gap: 10px;
-  align-items: flex-start;
   box-shadow: var(--shadow);
 }
-
 .insight-item.destaque-sucesso {
   border-left-color: #22c55e;
-  background: #14532d; /* Fundo verde escuro para chamar a atenção */
+  background: #14532d;
 }
-
-.insight-item .marcador {
-  font-size: 23px;
-  line-height: 1;
-}
-
-.insight-item:not(.destaque-sucesso) .marcador {
-  color: #facc15;
-}
-
-.insight-item.destaque-sucesso .marcador {
-  color: #4ade80;
-}
-
 .insight-item p {
-  font-size: 23px !important;
-  line-height: 1.4 !important;
-  color: #f1f5f9 !important;
-  margin: 0;
+  font-size: 15px;
+  color: #f1f5f9;
 }
