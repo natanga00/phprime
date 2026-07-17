@@ -281,7 +281,7 @@ tbody tr:nth-child(even) {
   box-shadow: var(--shadow);
 }
 .govsp-card .gov-item h4 {
-  font-size: 18px;
+  font-size: 25px;
 }
 .govsp-card .gov-item p {
   color: #22c55e;
@@ -297,12 +297,12 @@ tbody tr:nth-child(even) {
 }
 .govsp-card .gov-observacoes h3 {
   color: #60a5fa;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--line);
 }
 .govsp-card .gov-observacoes li {
-  font-size: 18px;
+  font-size: 25px;
   line-height: 1.35;
   color: #e2e8f0;
   margin-bottom: 5px;
