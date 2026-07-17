@@ -248,10 +248,10 @@ tbody tr:nth-child(even) {
 }
 .amigoz-card .principal tbody td {
   padding: 10px 4px;
-  font-size: 18px;
+  font-size: 20px;
 }
 .amigoz-card .box table.mini tbody td {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* ===========================================================
