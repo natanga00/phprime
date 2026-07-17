@@ -169,7 +169,7 @@ table {
 thead th {
   padding: 8px 6px;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   background: #3a475c;
   text-align: center;
@@ -177,7 +177,7 @@ thead th {
 
 tbody td {
   padding: 9px 6px;
-  font-size: 16px;
+  font-size: 18px;
   color: white;
   text-align: center;
   font-weight: 500;
