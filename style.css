@@ -500,3 +500,90 @@ tbody tr:nth-child(even) {
   font-size: 15px;
   color: #f1f5f9;
 }
+
+/* ===========================================================
+   9. COMPRA MASTER KARD
+=========================================================== */
+.bk-secao-kard,
+.bk-secao-kard * {
+  box-sizing: border-box;
+}
+
+.bk-secao-kard {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #1a233a;
+}
+
+.bk-secao-kard .bk-titulo-principal {
+  border-bottom: 3px solid #00e676;
+  padding-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1a233a;
+}
+
+.bk-secao-kard .bk-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.bk-secao-kard .bk-card-regiao {
+  border: 1px solid #1a233a;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  flex: 1;
+  min-width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.bk-secao-kard .bk-coluna-dupla {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.bk-secao-kard .bk-card-header {
+  background-color: #1c274c;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.bk-secao-kard ul.bk-card-lista {
+  list-style-type: disc !important;
+  padding: 15px 15px 15px 35px !important;
+  margin: 0 !important;
+}
+
+.bk-secao-kard ul.bk-card-lista li {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2b303a;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .bk-secao-kard .bk-cards-container {
+    flex-direction: column;
+  }
+  .bk-secao-kard .bk-card-regiao,
+  .bk-secao-kard .bk-coluna-dupla {
+    width: 100%;
+  }
+}
