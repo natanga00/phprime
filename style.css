@@ -504,124 +504,82 @@ tbody tr:nth-child(even) {
 /* ===========================================================
    9. COMPRA MASTER KARD
 =========================================================== */
-.bk-secao-kard,
-.bk-secao-kard * {
-  box-sizing: border-box;
+section.card-banco-kard {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding: 12px;
+  flex-direction: column;
 }
 
-.bk-secao-kard {
-  font-family: Arial, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  color: #1a233a;
+section.card-banco-kard.ativo {
+  display: flex !important;
 }
 
-.bk-secao-kard .bk-titulo-principal {
-  border-bottom: 3px solid #00e676;
-  padding-bottom: 10px;
-  margin-top: 0;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #1a233a;
-}
-
-.bk-secao-kard .bk-cards-container {
+/* Titulo Verde no Padrão do Painel */
+.titulo-banco-kard {
+  height: 42px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #059669, #10b981);
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
 }
 
-.bk-secao-kard .bk-card-regiao {
-  border: 1px solid #1a233a;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #ffffff;
-  flex: 1;
-  min-width: 250px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+/* Grid com 5 colunas lado a lado */
+.kard-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  height: calc(100% - 52px);
 }
 
-.bk-secao-kard .bk-coluna-dupla {
+.bloco-kard {
+  padding: 14px;
+  background: var(--card);
+  border-radius: 8px;
+  border-top: 3px solid #10b981;
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex: 1;
-  min-width: 250px;
 }
 
-.bk-secao-kard .bk-card-header {
-  background-color: #1c274c;
-  color: #ffffff;
+.bloco-kard h2 {
+  font-size: 18px;
+  color: #10b981;
   text-align: center;
-  padding: 12px;
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-.bk-secao-kard ul.bk-card-lista {
-  list-style-type: disc !important;
-  padding: 15px 15px 15px 35px !important;
-  margin: 0 !important;
-}
-
-.bk-secao-kard ul.bk-card-lista li {
-  margin-bottom: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #2b303a;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .bk-secao-kard .bk-cards-container {
-    flex-direction: column;
-  }
-  .bk-secao-kard .bk-card-regiao,
-  .bk-secao-kard .bk-coluna-dupla {
-    width: 100%;
-  }
-}
-
-.bk-secao-kard {
-  /* --- ESTILOS DE SOBREPOSIÇÃO (O SEGREDO) --- */
-  position: fixed; /* Fixa o container na tela, independente da rolagem */
-  top: 0; /* Alinha no topo */
-  left: 0; /* Alinha na esquerda */
-  width: 100vw; /* Ocupa 100% da largura visível */
-  height: 100vh; /* Ocupa 100% da altura visível */
-  z-index: 99999; /* Garante que fique acima de ABSOLUTAMENTE TUDO */
-  overflow-y: auto; /* Permite rolar o conteúdo se ele for maior que a tela */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.85
-  ); /* Fundo preto semi-transparente para dar contraste com o layout antigo */
-
-  /* --- ESTILOS DE LAYOUT (PARA CENTRALIZAR E DAR FÔLEGO) --- */
-  padding: 40px; /* Espaço interno para o conteúdo respirar */
-  font-family: Arial, sans-serif;
-  color: #ffffff; /* Texto branco para contrastar com o fundo novo */
-}
-
-/* Ajuste do container interno para não vazar e centralizar */
-.bk-cards-container {
+.bloco-kard ul {
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-  max-width: 1200px; /* Largura máxima do conteúdo */
-  margin: 0 auto; /* Centraliza o conteúdo horizontalmente na tela fixa */
-  width: 100%; /* Garante que ocupe a largura disponível do container fixo */
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Ajuste do título para branco (opcional, dependendo do fundo) */
-.bk-titulo-principal {
-  color: #ffffff;
+.bloco-kard li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 16px;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.bloco-kard li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #10b981;
+  font-weight: 900;
 }
