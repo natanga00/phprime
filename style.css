@@ -504,7 +504,7 @@ tbody tr:nth-child(even) {
 /* ===========================================================
    9. COMPRA MASTER KARD
 =========================================================== */
-section.card-banco-kard {
+section.card-convenios-regiao {
   position: absolute;
   inset: 0;
   display: none;
@@ -512,12 +512,11 @@ section.card-banco-kard {
   flex-direction: column;
 }
 
-section.card-banco-kard.ativo {
+section.card-convenios-regiao.ativo {
   display: flex !important;
 }
 
-/* Titulo da Section */
-.titulo-banco-kard {
+.titulo-convenios-regiao {
   height: 42px;
   display: flex;
   justify-content: center;
@@ -527,28 +526,114 @@ section.card-banco-kard.ativo {
   font-size: 25px;
   font-weight: 700;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, #059669, #10b981);
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
   box-shadow: var(--shadow);
   flex-shrink: 0;
 }
 
-/* Container centralizado da Imagem */
-.container-imagem-kard {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* GRID PRINCIPAL EM 3 COLUNAS */
+.regioes-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr;
+  gap: 10px;
+  height: calc(100% - 52px);
+}
+
+.bloco-regiao {
+  padding: 10px 12px;
   background: var(--card);
   border-radius: 8px;
-  padding: 10px;
+  border-top: 3px solid #3b82f6;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-/* Imagem Responsiva e Sem Distorção */
-.imagem-kard {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Mantém a proporção exata da imagem */
-  border-radius: 6px;
+.coluna-tripla {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+
+.mini-bloco {
+  flex: 1;
+}
+
+.bloco-regiao h2 {
+  font-size: 16px;
+  color: #60a5fa;
+  text-align: center;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.bloco-regiao ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+
+/* LISTA DUPLA EM SUDESTE (22 ITENS) */
+.bloco-regiao ul.lista-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+}
+
+.bloco-regiao li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #f1f5f9;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.bloco-regiao li > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 4px;
+}
+
+/* TAGS / BADGES DAS MODALIDADES */
+.tags {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.tag {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag.rcc {
+  background-color: #0284c7;
+} /* Azul Claro */
+.tag.rmc {
+  background-color: #7c3aed;
+} /* Roxo */
+.tag.emp {
+  background-color: #16a34a;
+} /* Verde */
+.tag.as {
+  background-color: #d97706;
+} /* Laranja */
+.tag.compra {
+  background-color: #dc2626;
+} /* Vermelho */
