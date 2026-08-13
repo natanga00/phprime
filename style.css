@@ -589,10 +589,39 @@ tbody tr:nth-child(even) {
 }
 
 .bk-secao-kard {
-  /* ... mantenha os estilos existentes ... */
+  /* --- ESTILOS DE SOBREPOSIÇÃO (O SEGREDO) --- */
+  position: fixed; /* Fixa o container na tela, independente da rolagem */
+  top: 0; /* Alinha no topo */
+  left: 0; /* Alinha na esquerda */
+  width: 100vw; /* Ocupa 100% da largura visível */
+  height: 100vh; /* Ocupa 100% da altura visível */
+  z-index: 99999; /* Garante que fique acima de ABSOLUTAMENTE TUDO */
+  overflow-y: auto; /* Permite rolar o conteúdo se ele for maior que a tela */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.85
+  ); /* Fundo preto semi-transparente para dar contraste com o layout antigo */
 
-  /* ADICIONE ESTAS TRÊS LINHAS ABAIXO: */
-  position: relative; /* Essencial para o z-index funcionar */
-  z-index: 1000; /* Um número alto para garantir que fique por cima */
-  width: 100%; /* Garante que ocupe toda a largura disponível */
+  /* --- ESTILOS DE LAYOUT (PARA CENTRALIZAR E DAR FÔLEGO) --- */
+  padding: 40px; /* Espaço interno para o conteúdo respirar */
+  font-family: Arial, sans-serif;
+  color: #ffffff; /* Texto branco para contrastar com o fundo novo */
+}
+
+/* Ajuste do container interno para não vazar e centralizar */
+.bk-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  max-width: 1200px; /* Largura máxima do conteúdo */
+  margin: 0 auto; /* Centraliza o conteúdo horizontalmente na tela fixa */
+  width: 100%; /* Garante que ocupe a largura disponível do container fixo */
+}
+
+/* Ajuste do título para branco (opcional, dependendo do fundo) */
+.bk-titulo-principal {
+  color: #ffffff;
 }
