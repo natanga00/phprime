@@ -516,7 +516,7 @@ section.card-banco-kard.ativo {
   display: flex !important;
 }
 
-/* Titulo Verde no Padrão do Painel */
+/* Titulo da Section */
 .titulo-banco-kard {
   height: 42px;
   display: flex;
@@ -532,54 +532,23 @@ section.card-banco-kard.ativo {
   flex-shrink: 0;
 }
 
-/* Grid com 5 colunas lado a lado */
-.kard-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  height: calc(100% - 52px);
-}
-
-.bloco-kard {
-  padding: 14px;
+/* Container centralizado da Imagem */
+.container-imagem-kard {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--card);
   border-radius: 8px;
-  border-top: 3px solid #10b981;
+  padding: 10px;
   box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
 }
 
-.bloco-kard h2 {
-  font-size: 18px;
-  color: #10b981;
-  text-align: center;
-  margin-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 6px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.bloco-kard ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.bloco-kard li {
-  position: relative;
-  padding-left: 20px;
-  font-size: 16px;
-  color: #f1f5f9;
-  font-weight: 500;
-}
-
-.bloco-kard li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #10b981;
-  font-weight: 900;
+/* Imagem Responsiva e Sem Distorção */
+.imagem-kard {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Mantém a proporção exata da imagem */
+  border-radius: 6px;
 }
