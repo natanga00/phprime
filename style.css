@@ -587,3 +587,12 @@ tbody tr:nth-child(even) {
     width: 100%;
   }
 }
+
+.bk-secao-kard {
+  /* ... mantenha os estilos existentes ... */
+
+  /* ADICIONE ESTAS TRÊS LINHAS ABAIXO: */
+  position: relative; /* Essencial para o z-index funcionar */
+  z-index: 1000; /* Um número alto para garantir que fique por cima */
+  width: 100%; /* Garante que ocupe toda a largura disponível */
+}
