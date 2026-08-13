@@ -2,7 +2,7 @@
     PH PRIME PROMOTORA
 =========================================================*/
 const cards = document.querySelectorAll(
-  ".card, .card-condicoes-mg, .card-condicoes-sp, .card-novo-daycoval, .card-ocred-master",
+  ".card, .card-condicoes-mg, .card-condicoes-sp, .card-novo-daycoval, .card-ocred-master, .card-banco-kard",
 );
 const hora = document.getElementById("hora");
 const barra = document.querySelector(".barra");
