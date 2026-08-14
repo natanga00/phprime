@@ -505,7 +505,7 @@ tbody tr:nth-child(even) {
    9. COMPRA MASTER KARD
 =========================================================== */
 section.card-convenios-regiao {
-  position: absolute;
+  position: relative;
   inset: 0;
   display: none;
   padding: 12px;
