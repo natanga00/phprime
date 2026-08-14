@@ -505,7 +505,7 @@ tbody tr:nth-child(even) {
    9. COMPRA MASTER KARD
 =========================================================== */
 section.card-convenios-regiao {
-  position: relative;
+  position: absolute;
   inset: 0;
   display: none;
   padding: 12px;
@@ -534,11 +534,9 @@ section.card-convenios-regiao.ativo {
 /* GRID PRINCIPAL EM 3 COLUNAS */
 .regioes-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 2fr 1.2fr 1fr;
   gap: 10px;
-  width: 85%;
   height: calc(100% - 52px);
-  margin: 0 auto;
 }
 
 .bloco-regiao {
