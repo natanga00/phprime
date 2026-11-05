@@ -1,179 +1,237 @@
+/* =========================================
+   PH PRIME PROMOTORA
+   CONTROLE DO PAINEL
+   2 TELAS
+   ROTAÇÃO AUTOMÁTICA
+   RELÓGIO
+   TECLADO
+   ESCALA RESPONSIVA
+========================================= */
+
 (() => {
   "use strict";
 
-  const CONFIG = {
+  // TEMPO DE CADA TELA EM SEGUNDOS
+  const DURACAO = 30;
+
+  // RESOLUÇÃO BASE DO PAINEL
+  const PALCO = {
     largura: 1280,
     altura: 720,
-    duracaoSlide: 30,
   };
 
-  const cards = Array.from(document.querySelectorAll("#painel > .card"));
+  // ELEMENTOS DO HTML
+  const telas = [...document.querySelectorAll("main .screen")];
 
-  const relogio = document.getElementById("hora");
+  const hora = document.getElementById("hora");
+
   const indicador = document.getElementById("slideAtual");
+
   const barra = document.getElementById("barraProgresso");
 
-  if (cards.length === 0) {
-    console.error("PH Prime: nenhum card foi encontrado.");
+  // VERIFICA SE EXISTEM TELAS
+  if (!telas.length) {
+    console.error("[PH Prime] Nenhuma tela encontrada.");
+
     return;
   }
 
-  let indiceAtual = 0;
-  let tempoDecorrido = 0;
+  // VARIÁVEIS DE CONTROLE
+  let atual = 0;
+
+  let decorrido = 0;
+
   let pausado = false;
-  let ultimoFrame = performance.now();
 
-  const totalCards = cards.length;
+  let ultimo = performance.now();
 
-  function atualizarRelogio() {
-    if (!relogio) return;
+  // =========================================
+  // FORMATAÇÃO DE NÚMEROS
+  // =========================================
 
-    relogio.textContent = new Intl.DateTimeFormat("pt-BR", {
+  const pad = (numero) => {
+    return String(numero).padStart(2, "0");
+  };
+
+  // =========================================
+  // ATUALIZAÇÃO DO RELÓGIO
+  // =========================================
+
+  function atualizarHora() {
+    if (!hora) return;
+
+    hora.textContent = new Intl.DateTimeFormat("pt-BR", {
       hour: "2-digit",
+
       minute: "2-digit",
+
       second: "2-digit",
+
       hour12: false,
     }).format(new Date());
   }
 
-  function atualizarIndicadores() {
-    if (indicador) {
-      const atual = String(indiceAtual + 1).padStart(2, "0");
-      const total = String(totalCards).padStart(2, "0");
+  // =========================================
+  // ATUALIZAÇÃO DOS INDICADORES
+  // =========================================
 
-      indicador.textContent = `${atual} / ${total}`;
+  function atualizarIndicador() {
+    if (indicador) {
+      indicador.textContent = `${pad(atual + 1)} / ${pad(telas.length)}`;
     }
 
     if (barra) {
-      const percentual = Math.min(
-        100,
-        (tempoDecorrido / CONFIG.duracaoSlide) * 100,
-      );
+      const percentual = Math.min(100, (decorrido / DURACAO) * 100);
 
       barra.style.width = `${percentual}%`;
     }
   }
 
-  function mostrarSlide(novoIndice) {
-    indiceAtual = (novoIndice + totalCards) % totalCards;
+  // =========================================
+  // MOSTRAR TELA
+  // =========================================
 
-    cards.forEach((card, index) => {
-      const ativo = index === indiceAtual;
+  function mostrar(indice) {
+    atual = (indice + telas.length) % telas.length;
 
-      card.classList.toggle("ativo", ativo);
-      card.setAttribute("aria-hidden", String(!ativo));
+    telas.forEach((tela, i) => {
+      const ativa = i === atual;
+
+      tela.classList.toggle("active", ativa);
+
+      tela.setAttribute("aria-hidden", String(!ativa));
     });
 
-    tempoDecorrido = 0;
-    atualizarIndicadores();
+    decorrido = 0;
+
+    atualizarIndicador();
   }
 
-  function proximoSlide() {
-    mostrarSlide(indiceAtual + 1);
-  }
+  // =========================================
+  // ESCALA RESPONSIVA
+  // =========================================
 
-  function slideAnterior() {
-    mostrarSlide(indiceAtual - 1);
-  }
+  function escala() {
+    const fator = Math.min(
+      window.innerWidth / PALCO.largura,
 
-  function alternarPausa() {
-    pausado = !pausado;
-
-    document.body.classList.toggle("painel-pausado", pausado);
-
-    console.info(pausado ? "Painel pausado." : "Painel retomado.");
-  }
-
-  function ajustarEscala() {
-    const escala = Math.min(
-      window.innerWidth / CONFIG.largura,
-      window.innerHeight / CONFIG.altura,
+      window.innerHeight / PALCO.altura,
     );
 
-    const deslocamentoX = (window.innerWidth - CONFIG.largura * escala) / 2;
+    const x = (window.innerWidth - PALCO.largura * fator) / 2;
 
-    const deslocamentoY = (window.innerHeight - CONFIG.altura * escala) / 2;
+    const y = (window.innerHeight - PALCO.altura * fator) / 2;
 
-    document.body.style.transform = `translate(${deslocamentoX}px, ${deslocamentoY}px) scale(${escala})`;
+    document.body.style.transform = `translate(${x}px, ${y}px) scale(${fator})`;
   }
 
-  function alternarTelaCheia() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((erro) => {
-        console.warn("Não foi possível ativar tela cheia:", erro);
-      });
-    } else {
-      document.exitFullscreen().catch(() => {});
-    }
-  }
+  // =========================================
+  // CONTROLES DO TECLADO
+  // =========================================
 
   document.addEventListener("keydown", (event) => {
+    // PRÓXIMA TELA
     if (event.key === "ArrowRight") {
+      mostrar(atual + 1);
+    }
+
+    // TELA ANTERIOR
+    else if (event.key === "ArrowLeft") {
+      mostrar(atual - 1);
+    }
+
+    // PAUSAR / CONTINUAR
+    else if (event.code === "Space") {
       event.preventDefault();
-      proximoSlide();
+
+      pausado = !pausado;
+
+      document.body.classList.toggle("paused", pausado);
     }
 
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      slideAnterior();
+    // PRIMEIRA TELA
+    else if (event.key === "Home") {
+      mostrar(0);
     }
 
-    if (event.code === "Space") {
-      event.preventDefault();
-      alternarPausa();
+    // ÚLTIMA TELA
+    else if (event.key === "End") {
+      mostrar(telas.length - 1);
     }
 
-    if (event.key === "Home") {
-      mostrarSlide(0);
-    }
-
-    if (event.key === "End") {
-      mostrarSlide(totalCards - 1);
-    }
-
-    if (event.key.toLowerCase() === "f") {
-      alternarTelaCheia();
+    // TELA CHEIA
+    else if (event.key.toLowerCase() === "f") {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen?.().catch(() => {});
+      } else {
+        document.exitFullscreen?.().catch(() => {});
+      }
     }
   });
 
-  function animar(agora) {
-    const diferenca = Math.min((agora - ultimoFrame) / 1000, 0.25);
+  // =========================================
+  // ANIMAÇÃO E ROTAÇÃO AUTOMÁTICA
+  // =========================================
 
-    ultimoFrame = agora;
+  function animar(agora) {
+    const delta = Math.min(
+      (agora - ultimo) / 1000,
+
+      0.25,
+    );
+
+    ultimo = agora;
 
     if (!pausado) {
-      tempoDecorrido += diferenca;
+      decorrido += delta;
 
-      if (tempoDecorrido >= CONFIG.duracaoSlide) {
-        proximoSlide();
+      // PASSA PARA A PRÓXIMA TELA
+      if (decorrido >= DURACAO) {
+        mostrar(atual + 1);
       } else {
-        atualizarIndicadores();
+        atualizarIndicador();
       }
     }
 
     requestAnimationFrame(animar);
   }
 
-  // Inicialização
-  atualizarRelogio();
-  setInterval(atualizarRelogio, 1000);
+  // =========================================
+  // INICIALIZAÇÃO
+  // =========================================
 
-  window.addEventListener("resize", ajustarEscala);
+  atualizarHora();
+
+  setInterval(atualizarHora, 1000);
+
+  window.addEventListener("resize", escala);
 
   document.addEventListener("visibilitychange", () => {
-    ultimoFrame = performance.now();
+    ultimo = performance.now();
   });
 
-  mostrarSlide(0);
-  ajustarEscala();
+  // COMEÇA NA PRIMEIRA TELA
+  mostrar(0);
 
+  // AJUSTA PARA O TAMANHO DA TELA
+  escala();
+
+  // INICIA A ANIMAÇÃO
   requestAnimationFrame(animar);
 
-  // Controle externo, caso necessário.
+  // =========================================
+  // CONTROLE EXTERNO
+  // =========================================
+
   window.PHPrimePainel = {
-    proximo: proximoSlide,
-    anterior: slideAnterior,
-    pausar: alternarPausa,
-    irPara: mostrarSlide,
+    proximo: () => {
+      mostrar(atual + 1);
+    },
+
+    anterior: () => {
+      mostrar(atual - 1);
+    },
+
+    irPara: mostrar,
   };
 })();
