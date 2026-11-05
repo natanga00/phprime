@@ -1,37 +1,27 @@
-/* =========================================================
-   PH PRIME PROMOTORA • CONTROLE DO PAINEL
-   9 telas | rotação automática | teclado | escala responsiva
-========================================================= */
 (() => {
   "use strict";
 
-  const DURACAO_SLIDE = 30; // segundos por tela
-  const PALCO = { largura: 1280, altura: 720 };
+  const DURACAO = 30;
+  const LARGURA = 1280;
+  const ALTURA = 720;
 
-  const cards = Array.from(document.querySelectorAll("main .card"));
+  const cards = Array.from(document.querySelectorAll("#painel > .card"));
+
   const relogio = document.getElementById("hora");
-  const barra = document.getElementById("barraProgresso");
   const indicador = document.getElementById("slideAtual");
+  const barra = document.getElementById("barraProgresso");
 
   if (!cards.length) {
-    console.error("[PH Prime] Nenhum card foi encontrado.");
+    console.error("PH Prime: nenhum card encontrado.");
     return;
   }
 
-  let indiceAtual = Math.max(
-    0,
-    cards.findIndex((card) => card.classList.contains("ativo")),
-  );
-
-  let decorrido = 0;
+  let indice = 0;
+  let tempo = 0;
   let pausado = false;
   let ultimoFrame = performance.now();
 
   const total = cards.length;
-
-  function formatarNumero(valor) {
-    return String(valor).padStart(2, "0");
-  }
 
   function atualizarRelogio() {
     if (!relogio) return;
@@ -44,109 +34,113 @@
     }).format(new Date());
   }
 
-  function atualizarIndicadores() {
+  function atualizarIndicador() {
     if (indicador) {
-      indicador.textContent = `${formatarNumero(indiceAtual + 1)} / ${formatarNumero(total)}`;
+      indicador.textContent = `${String(indice + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
     }
 
     if (barra) {
-      const percentual = Math.min(100, (decorrido / DURACAO_SLIDE) * 100);
-
-      barra.style.width = `${percentual}%`;
+      barra.style.width = `${Math.min(100, (tempo / DURACAO) * 100)}%`;
     }
   }
 
-  function mostrarCard(novoIndice) {
-    indiceAtual = (novoIndice + total) % total;
+  function mostrarSlide(novoIndice) {
+    indice = (novoIndice + total) % total;
 
-    cards.forEach((card, indice) => {
-      const ativo = indice === indiceAtual;
+    cards.forEach((card, i) => {
+      const ativo = i === indice;
 
       card.classList.toggle("ativo", ativo);
       card.setAttribute("aria-hidden", String(!ativo));
     });
 
-    decorrido = 0;
-    atualizarIndicadores();
+    tempo = 0;
+    atualizarIndicador();
   }
 
-  function proximoCard() {
-    mostrarCard(indiceAtual + 1);
+  function proximo() {
+    mostrarSlide(indice + 1);
   }
 
-  function cardAnterior() {
-    mostrarCard(indiceAtual - 1);
+  function anterior() {
+    mostrarSlide(indice - 1);
   }
 
   function alternarPausa() {
     pausado = !pausado;
+
     document.body.classList.toggle("painel-pausado", pausado);
   }
 
   function ajustarEscala() {
     const escala = Math.min(
-      window.innerWidth / PALCO.largura,
-      window.innerHeight / PALCO.altura,
+      window.innerWidth / LARGURA,
+      window.innerHeight / ALTURA,
     );
 
-    const x = (window.innerWidth - PALCO.largura * escala) / 2;
-    const y = (window.innerHeight - PALCO.altura * escala) / 2;
+    const x = (window.innerWidth - LARGURA * escala) / 2;
+    const y = (window.innerHeight - ALTURA * escala) / 2;
 
     document.body.style.transform = `translate(${x}px, ${y}px) scale(${escala})`;
   }
 
   function telaCheia() {
-    if (
-      !document.fullscreenElement &&
-      document.documentElement.requestFullscreen
-    ) {
-      document.documentElement.requestFullscreen().catch(() => {});
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen().catch(() => {});
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.().catch(() => {});
     }
   }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      proximoCard();
-    } else if (event.key === "ArrowLeft") {
+      proximo();
+    }
+
+    if (event.key === "ArrowLeft") {
       event.preventDefault();
-      cardAnterior();
-    } else if (event.code === "Space") {
+      anterior();
+    }
+
+    if (event.code === "Space") {
       event.preventDefault();
       alternarPausa();
-    } else if (event.key === "Home") {
-      mostrarCard(0);
-    } else if (event.key === "End") {
-      mostrarCard(total - 1);
-    } else if (event.key.toLowerCase() === "f") {
+    }
+
+    if (event.key === "Home") {
+      mostrarSlide(0);
+    }
+
+    if (event.key === "End") {
+      mostrarSlide(total - 1);
+    }
+
+    if (event.key.toLowerCase() === "f") {
       telaCheia();
     }
   });
 
-  // Relógio independente da rotação dos slides.
-  atualizarRelogio();
-  window.setInterval(atualizarRelogio, 1000);
-
-  // Controle da rotação automática.
   function animar(agora) {
     const delta = Math.min((agora - ultimoFrame) / 1000, 0.25);
 
     ultimoFrame = agora;
 
     if (!pausado) {
-      decorrido += delta;
+      tempo += delta;
 
-      if (decorrido >= DURACAO_SLIDE) {
-        proximoCard();
+      if (tempo >= DURACAO) {
+        proximo();
       } else {
-        atualizarIndicadores();
+        atualizarIndicador();
       }
     }
 
-    window.requestAnimationFrame(animar);
+    requestAnimationFrame(animar);
   }
+
+  atualizarRelogio();
+  setInterval(atualizarRelogio, 1000);
 
   window.addEventListener("resize", ajustarEscala);
 
@@ -154,16 +148,15 @@
     ultimoFrame = performance.now();
   });
 
-  mostrarCard(indiceAtual);
+  mostrarSlide(0);
   ajustarEscala();
 
-  window.requestAnimationFrame(animar);
+  requestAnimationFrame(animar);
 
-  // Funções disponíveis para controle externo.
   window.PHPrimePainel = {
-    proximo: proximoCard,
-    anterior: cardAnterior,
+    proximo,
+    anterior,
     pausar: alternarPausa,
-    irPara: mostrarCard,
+    irPara: mostrarSlide,
   };
 })();

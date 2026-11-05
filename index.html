@@ -1,334 +1,793 @@
-```html
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071426" />
+
+    <title>PH Prime Promotora | Painel Operacional</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="marca">
+        <div class="marca-simbolo">PH</div>
+
+        <div class="empresa">
+          <h1>PH PRIME <span>PROMOTORA</span></h1>
+          <p>PAINEL OPERACIONAL • CONSULTA RÁPIDA</p>
+        </div>
+      </div>
+
+      <div class="topbar-status">
+        <span class="status-ponto"></span>
+        PAINEL ATIVO
+      </div>
+
+      <div class="painel">
+        <div class="relogio">
+          <span class="relogio-legenda">HORÁRIO ATUAL</span>
+          <div id="hora">00:00:00</div>
+        </div>
+
+        <div class="slide-indicador">
+          <span class="relogio-legenda">TELA</span>
+          <strong id="slideAtual">01 / 09</strong>
+        </div>
+      </div>
+    </header>
+
+    <main id="painel">
+      <!-- TELA 1 - AMIGOZ GOV MG -->
+      <section class="card amigoz-card ativo">
+        <div class="titulo titulo-amigoz">AMIGOZ (GOV-MG)</div>
+
         <div class="dashboard">
+          <div class="principal">
+            <h2>Fatores por Idade e Prazo</h2>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Idade</th>
+                  <th>72m</th>
+                  <th>60m</th>
+                  <th>48m</th>
+                  <th>36m</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>21 a 68 anos</td>
+                  <td class="prazo">25,00</td>
+                  <td class="prazo">23,84</td>
+                  <td class="prazo">22,08</td>
+                  <td class="prazo">19,42</td>
+                </tr>
+                <tr>
+                  <td>69 anos</td>
+                  <td>-</td>
+                  <td class="prazo">23,84</td>
+                  <td class="prazo">22,08</td>
+                  <td class="prazo">19,42</td>
+                </tr>
+                <tr>
+                  <td>70 anos</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td class="prazo">22,08</td>
+                  <td class="prazo">19,42</td>
+                </tr>
+                <tr>
+                  <td>71 anos</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td class="prazo">19,42</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <aside>
+            <div class="box">
+              <h3>Limites de Crédito</h3>
+
+              <table class="mini">
+                <thead>
+                  <tr>
+                    <th>Idade</th>
+                    <th>Mínimo</th>
+                    <th>Máximo</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Até 65 anos</td>
+                    <td>R$ 450</td>
+                    <td class="valor">R$ 50.000</td>
+                  </tr>
+                  <tr>
+                    <td>66 a 70 anos</td>
+                    <td>R$ 450</td>
+                    <td class="valor">R$ 20.000</td>
+                  </tr>
+                  <tr>
+                    <td>71 anos</td>
+                    <td>R$ 450</td>
+                    <td class="valor">R$ 5.000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="box">
+              <h3>Regras do Cartão Benefício</h3>
+
+              <ul>
+                <li>Convênio: Governo de Minas Gerais.</li>
+                <li>
+                  <strong>Idade limite final:</strong>
+                  O contrato deve liquidar com o cliente tendo no máximo
+                  <strong>74 anos</strong>.
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- TELA 2 - IDADES MÁXIMAS GOV SP -->
+      <section class="card govsp-card">
+        <div class="titulo titulo-govsp">
+          GOVERNO DE SÃO PAULO (IDADES MÁXIMAS)
+        </div>
+
+        <div class="gov-container">
+          <div class="gov-grid">
+            <div class="gov-item">
+              <h4>INDUSTRIAL</h4>
+              <p>78 anos (Prazo 12m)</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>AMIGOZ</h4>
+              <p>Idade final 78 anos</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>HOPE</h4>
+              <p>Até 75 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>DIG MAIS</h4>
+              <p>Até 74 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>PAN</h4>
+              <p>Até 72 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>BMG</h4>
+              <p>De 70 até 72 anos</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>FUTURO SÊNIOR</h4>
+              <p>Até 71 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>BANCO NEO</h4>
+              <p>Até 71 anos e 10 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>BANCO FUTURO</h4>
+              <p>Até 69 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item clt">
+              <h4>AMIGOZ CLT</h4>
+              <p>Idade final 64 anos</p>
+            </div>
+
+            <div class="gov-item clt">
+              <h4>HOPE CLT</h4>
+              <p>Até 64 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item clt">
+              <h4>DIG MAIS CLT</h4>
+              <p>Até 63 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item clt">
+              <h4>FUTURO CLT</h4>
+              <p>Até 55 anos e 11 meses</p>
+            </div>
+
+            <div class="gov-item">
+              <h4>BTW</h4>
+              <p>Até 66 anos e 11 meses</p>
+            </div>
+          </div>
+
+          <div class="gov-observacoes">
+            <h3>DIRETRIZES DA OPERAÇÃO</h3>
+
+            <ul>
+              <li>
+                As idades representam o teto operacional bruto permitido por
+                cada instituição financeira.
+              </li>
+              <li>
+                Sempre calcular a idade que o cliente terá
+                <strong>no encerramento da última parcela</strong>.
+              </li>
+              <li>
+                Consulte atualizações pontuais na Intranet antes de formalizar a
+                proposta.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 3 - MARGEM GOV SP -->
+      <section class="card margem-card">
+        <div class="titulo titulo-margem">MARGEM DE SEGURANÇA (GOVSP)</div>
+
+        <div class="dashboard grade-3">
           <div class="principal">
             <h2>DAYCOVAL</h2>
             <table>
               <tbody>
-                <tr><td>• SPPREV: Sem trava (100%)</td></tr>
-                <tr><td>• SEFAZ: Sem trava (100%)</td></tr>
-                <tr><td class="prazo">• EDUC: Manual (Cheio)</td></tr>
+                <tr>
+                  <td>• SPPREV: Sem trava (100%)</td>
+                </tr>
+                <tr>
+                  <td>• SEFAZ: Sem trava (100%)</td>
+                </tr>
+                <tr>
+                  <td class="prazo">• EDUC: Manual (Cheio)</td>
+                </tr>
               </tbody>
             </table>
           </div>
 
           <div class="principal">
             <h2>HOPE</h2>
-            <table><tbody><tr>
-              <td class="valor" style="font-size: 16px; margin-top: 5px">
-                ★ HOPE ATENDE NÃO PERTURBE
-              </td>
-            </tr></tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="valor">★ HOPE ATENDE NÃO PERTURBE</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO BMG</h2>
-            <table><tbody>
-              <tr><td class="prazo">• SPPREV/SEFAZ: 90% Margem</td></tr>
-              <tr><td class="prazo">• SEFAZ EDUC: 80% Margem</td></tr>
-              <tr><td class="valor">★ ATENDE LEI 500</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">• SPPREV/SEFAZ: 90% Margem</td>
+                </tr>
+                <tr>
+                  <td class="prazo">• SEFAZ EDUC: 80% Margem</td>
+                </tr>
+                <tr>
+                  <td class="valor">★ ATENDE LEI 500</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO PAN</h2>
-            <table><tbody>
-              <tr><td>• SPPREV: Sem trava (100%)</td></tr>
-              <tr><td>• SEFAZ: Sem trava (100%)</td></tr>
-              <tr><td class="valor">★ ATENDE LEI 500</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• SPPREV: Sem trava (100%)</td>
+                </tr>
+                <tr>
+                  <td>• SEFAZ: Sem trava (100%)</td>
+                </tr>
+                <tr>
+                  <td class="valor">★ ATENDE LEI 500</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO BTW</h2>
-            <table><tbody>
-              <tr><td class="prazo">• SPPREV: 98% da Margem</td></tr>
-              <tr><td class="prazo">• SEFAZ: 80% (Manual)</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">• SPPREV: 98% da Margem</td>
+                </tr>
+                <tr>
+                  <td class="prazo">• SEFAZ: 80% (Manual)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>INDUSTRIAL</h2>
-            <table><tbody>
-              <tr><td class="prazo">• SPPREV: 97% da Margem</td></tr>
-              <tr class="nao" style="font-size: 14px">
-                <td>BLOQUEIA DEMAIS CONVÊNIOS</td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">• SPPREV: 97% da Margem</td>
+                </tr>
+                <tr class="nao">
+                  <td>BLOQUEIA DEMAIS CONVÊNIOS</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO AMIGOZ</h2>
-            <table><tbody>
-              <tr><td class="destaque-vermelho">• Reserva Fixa: R$ 30,00</td></tr>
-              <tr><td class="prazo">• Mínimo Contrato: R$ 1.000</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="destaque-vermelho">• Reserva Fixa: R$ 30,00</td>
+                </tr>
+                <tr>
+                  <td class="prazo">• Mínimo Contrato: R$ 1.000</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO SAFRA</h2>
-            <table><tbody>
-              <tr><td>• SPPREV / PMSP: Sem Trava</td></tr>
-              <tr><td class="destaque-vermelho">• SEFAZ: Reserva R$ 50,00</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• SPPREV / PMSP: Sem Trava</td>
+                </tr>
+                <tr>
+                  <td class="destaque-vermelho">• SEFAZ: Reserva R$ 50,00</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO DO BRASIL</h2>
-            <table><tbody>
-              <tr><td>• Sem travas de segurança</td></tr>
-              <tr><td class="valor">• Cálculo integral (100%)</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Sem travas de segurança</td>
+                </tr>
+                <tr>
+                  <td class="valor">• Cálculo integral (100%)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- MARGEM DE SEGURANÇA (GOVMG) -->
+      <!-- TELA 4 - MARGEM GOV MG -->
       <section class="card margem-mg-card">
         <div class="titulo titulo-margem-mg">MARGEM DE SEGURANÇA (GOVMG)</div>
-        <div class="dashboard">
+
+        <div class="dashboard grade-3">
           <div class="principal">
             <h2>BANCO BMG</h2>
-            <table><tbody>
-              <tr><td>• Novo: 95% da Margem</td></tr>
-              <tr class="nao" style="font-size: 14px">
-                <td>REFINANCIAMENTO SUSPENSO</td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: 95% da Margem</td>
+                </tr>
+                <tr class="nao">
+                  <td>REFINANCIAMENTO SUSPENSO</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>DAYCOVAL</h2>
-            <table><tbody>
-              <tr><td class="prazo">• Novo: Usar 95% da Margem</td></tr>
-              <tr><td>• Refin: R$ 1,00 (6 Parc. Pagas)</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">• Novo: Usar 95% da Margem</td>
+                </tr>
+                <tr>
+                  <td>• Refin: R$ 1,00 (6 Parc. Pagas)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO PAN</h2>
-            <table><tbody>
-              <tr><td>• Novo: R$ 10,00 Margem</td></tr>
-              <tr><td>• Refinamento: R$ 1,00 Margem</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: R$ 10,00 Margem</td>
+                </tr>
+                <tr>
+                  <td>• Refinamento: R$ 1,00 Margem</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO DIGIO</h2>
-            <table><tbody>
-              <tr><td>• Novo: R$ 10,00 Margem</td></tr>
-              <tr><td>• Refinamento: R$ 1,00 Margem</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: R$ 10,00 Margem</td>
+                </tr>
+                <tr>
+                  <td>• Refinamento: R$ 1,00 Margem</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>SANTANDER</h2>
-            <table><tbody>
-              <tr><td>• Novo: R$ 1,00 Margem</td></tr>
-              <tr><td>• Refinamento: R$ 1,00 Margem</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: R$ 1,00 Margem</td>
+                </tr>
+                <tr>
+                  <td>• Refinamento: R$ 1,00 Margem</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>INDUSTRIAL</h2>
-            <table><tbody>
-              <tr><td>• Novo: R$ 10,00 Margem</td></tr>
-              <tr><td>• Refinamento: R$ 1,00 Margem</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: R$ 10,00 Margem</td>
+                </tr>
+                <tr>
+                  <td>• Refinamento: R$ 1,00 Margem</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO AMIGOZ</h2>
-            <table><tbody>
-              <tr><td>• Novo: R$ 10,00 Margem</td></tr>
-              <tr class="nao" style="font-size: 14px; background: #475569 !important">
-                <td>NÃO TEM REFINANCIAMENTO AINDA</td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td>• Novo: R$ 10,00 Margem</td>
+                </tr>
+                <tr class="nao">
+                  <td>NÃO TEM REFINANCIAMENTO AINDA</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="principal">
             <h2>BANCO AKI CAPITAL</h2>
-            <table><tbody>
-              <tr class="texto-longo">
-                <td>• SEPLAG Benefício: Início até 71a 11m (72m)</td>
-              </tr>
-              <tr class="texto-longo">
-                <td>• SEPLAG Consignado: Início até 71a 11m (96m)</td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr class="texto-longo">
+                  <td>• SEPLAG Benefício: Início até 71a 11m (72m)</td>
+                </tr>
+                <tr class="texto-longo">
+                  <td>• SEPLAG Consignado: Início até 71a 11m (96m)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- MELHORES CONDIÇÕES MG -->
+      <!-- TELA 5 - MELHORES CONDIÇÕES MG -->
       <section class="card card-condicoes-mg">
         <div class="titulo-condicoes-mg">
-          GOVERNO DE MINAS MELHORES CONDIÇÕES COMERCIAIS
+          GOVERNO DE MINAS • MELHORES CONDIÇÕES COMERCIAIS
         </div>
+
         <div class="dashboard-grade">
           <div class="bloco-opcao">
             <h2>1ª OPÇÃO</h2>
-            <table><tbody>
-              <tr><td class="prazo">BANCO HOPE</td></tr>
-              <tr><td class="idade">120 MESES</td></tr>
-              <tr><td class="valor">TAXA 2,49%</td></tr>
-              <tr><td class="valor">TAXA 2,39%</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">BANCO HOPE</td>
+                </tr>
+                <tr>
+                  <td class="idade">120 MESES</td>
+                </tr>
+                <tr>
+                  <td class="valor">TAXA 2,49%</td>
+                </tr>
+                <tr>
+                  <td class="valor">TAXA 2,39%</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-opcao">
             <h2>2ª OPÇÃO</h2>
-            <table><tbody>
-              <tr><td class="prazo">BANCO INDUSTRIAL</td></tr>
-              <tr><td class="idade">96x Gm7</td></tr>
-              <tr><td class="idade">120x Gm7</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">BANCO INDUSTRIAL</td>
+                </tr>
+                <tr>
+                  <td class="idade">96x Gm7</td>
+                </tr>
+                <tr>
+                  <td class="idade">120x Gm7</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-opcao">
             <h2>3ª OPÇÃO</h2>
-            <table><tbody>
-              <tr><td class="prazo">BANCO DAYCOVAL</td></tr>
-              <tr><td class="idade">Consultar Tabelas Vigentes</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">BANCO DAYCOVAL</td>
+                </tr>
+                <tr>
+                  <td class="idade">Consultar Tabelas Vigentes</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- MELHORES CONDIÇÕES SP -->
+      <!-- TELA 6 - MELHORES CONDIÇÕES SP -->
       <section class="card card-condicoes-sp">
         <div class="titulo-condicoes-sp">
-          GOVERNO DE SÃO PAULO MELHORES CONDIÇÕES COMERCIAIS
+          GOVERNO DE SÃO PAULO • MELHORES CONDIÇÕES COMERCIAIS
         </div>
+
         <div class="dashboard-grade">
           <div class="bloco-opcao">
             <h2>1ª OPÇÃO SPPREV</h2>
-            <table><tbody>
-              <tr><td class="prazo">BANCO HOPE</td></tr>
-              <tr><td class="valor">SPPREV – TX 2,49%</td></tr>
-              <tr><td class="valor">SPPREV - TX 2,39%</td></tr>
-              <tr><td><span class="prazo">2ª OPÇÃO:</span> INDUSTRIAL</td></tr>
-              <tr><td><span class="prazo">3ª OPÇÃO:</span> BMG</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">BANCO HOPE</td>
+                </tr>
+                <tr>
+                  <td class="valor">SPPREV – TX 2,49%</td>
+                </tr>
+                <tr>
+                  <td class="valor">SPPREV - TX 2,39%</td>
+                </tr>
+                <tr>
+                  <td><span class="prazo">2ª OPÇÃO:</span> INDUSTRIAL</td>
+                </tr>
+                <tr>
+                  <td><span class="prazo">3ª OPÇÃO:</span> BMG</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-opcao">
             <h2>OPÇÕES EDUCAÇÃO</h2>
-            <table><tbody>
-              <tr><td class="prazo">1ª OPÇÃO</td></tr>
-              <tr><td>BANCO AMIGOZ</td></tr>
-              <tr><td class="prazo">2ª OPÇÃO</td></tr>
-              <tr><td>BANCO BTW</td></tr>
-              <tr><td class="prazo">3ª OPÇÃO</td></tr>
-              <tr><td>BANCO BMG</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">1ª OPÇÃO</td>
+                </tr>
+                <tr>
+                  <td>BANCO AMIGOZ</td>
+                </tr>
+                <tr>
+                  <td class="prazo">2ª OPÇÃO</td>
+                </tr>
+                <tr>
+                  <td>BANCO BTW</td>
+                </tr>
+                <tr>
+                  <td class="prazo">3ª OPÇÃO</td>
+                </tr>
+                <tr>
+                  <td>BANCO BMG</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-opcao">
             <h2>OPÇÕES SEFAZ</h2>
-            <table><tbody>
-              <tr><td><span class="prazo">1ª OPÇÃO:</span> BANCO HOPE</td></tr>
-              <tr><td><span class="prazo">2ª OPÇÃO:</span> BANCO BMG</td></tr>
-              <tr><td><span class="prazo">3ª OPÇÃO:</span> BANCO BTW</td></tr>
-              <tr><td><span class="prazo">4ª OPÇÃO:</span> BANCO PAN</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td><span class="prazo">1ª OPÇÃO:</span> BANCO HOPE</td>
+                </tr>
+                <tr>
+                  <td><span class="prazo">2ª OPÇÃO:</span> BANCO BMG</td>
+                </tr>
+                <tr>
+                  <td><span class="prazo">3ª OPÇÃO:</span> BANCO BTW</td>
+                </tr>
+                <tr>
+                  <td><span class="prazo">4ª OPÇÃO:</span> BANCO PAN</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- NOVO DAYCOVAL GOV SP -->
+      <!-- TELA 7 - NOVO DAYCOVAL -->
       <section class="card card-novo-daycoval">
         <div class="titulo-novo-daycoval">
-          ATENÇÃO NOVO • BANCO QUE ATENDE CONTRATADO GOV SÃO PAULO
+          ATENÇÃO • BANCO QUE ATENDE CONTRATADO GOV SÃO PAULO
         </div>
+
         <div class="dashboard-grade">
           <div class="bloco-regra">
             <h2>BANCO DAYCOVAL</h2>
-            <table><tbody>
-              <tr>
-                <td><span class="prazo">VALOR MÍNIMO CONTRATO:</span></td>
-                <td class="valor">R$ 500,00</td>
-              </tr>
-              <tr>
-                <td><span class="prazo">VALOR MÁXIMO CONTRATO:</span></td>
-                <td class="valor">R$ 25.000,00</td>
-              </tr>
-              <tr>
-                <td><span class="prazo">MENOR MARGEM PARA ADESÃO:</span></td>
-                <td class="valor">R$ 55,00</td>
-              </tr>
-              <tr class="alerta-seguranca">
-                <td colspan="2">NÃO TEM MARGEM DE SEGURANÇA</td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">VALOR MÍNIMO CONTRATO</td>
+                  <td class="valor">R$ 500,00</td>
+                </tr>
+                <tr>
+                  <td class="prazo">VALOR MÁXIMO CONTRATO</td>
+                  <td class="valor">R$ 25.000,00</td>
+                </tr>
+                <tr>
+                  <td class="prazo">MENOR MARGEM PARA ADESÃO</td>
+                  <td class="valor">R$ 55,00</td>
+                </tr>
+                <tr class="alerta-seguranca">
+                  <td colspan="2">NÃO TEM MARGEM DE SEGURANÇA</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-regra">
             <h2>REGRAS DE PRAZO</h2>
-            <table><tbody>
-              <tr><td><span class="prazo">MENOR PRAZO:</span></td><td>6 MESES</td></tr>
-              <tr><td><span class="prazo">MAIOR PRAZO:</span></td><td>24 MESES</td></tr>
-              <tr class="alerta-desconto">
-                <td colspan="2">
-                  DESCONTAR 3 MESES DA DATA FINAL DO CONTRATO NO PRAZO
-                </td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">MENOR PRAZO</td>
+                  <td>6 MESES</td>
+                </tr>
+                <tr>
+                  <td class="prazo">MAIOR PRAZO</td>
+                  <td>24 MESES</td>
+                </tr>
+                <tr class="alerta-desconto">
+                  <td colspan="2">
+                    DESCONTAR 3 MESES DA DATA FINAL DO CONTRATO NO PRAZO
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-regra">
             <h2>REGRAS DE IDADE</h2>
-            <table><tbody>
-              <tr><td><span class="prazo">IDADE PERMITIDA:</span></td></tr>
-              <tr>
-                <td class="idade" style="font-size: 28px !important; font-weight: 700 !important; color: #facc15 !important">
-                  21 ATÉ 55 ANOS
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 14px !important; color: #cbd5e1 !important; padding-top: 10px !important">
-                  *Idade válida para o início do contrato.
-                </td>
-              </tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">IDADE PERMITIDA</td>
+                </tr>
+                <tr>
+                  <td class="idade">21 ATÉ 55 ANOS</td>
+                </tr>
+                <tr>
+                  <td class="nota">*Idade válida para o início do contrato.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-      <!-- COMPRA MASTER OCRED -->
+      <!-- TELA 8 - OCRED -->
       <section class="card card-ocred-master">
         <div class="titulo-ocred-master">
           BANCO OCRED • COMPRA DE CARTÃO MASTER
         </div>
+
         <div class="dashboard-grade">
           <div class="bloco-ocred">
             <h2>LÍDERES DE TICKET</h2>
-            <table><tbody>
-              <tr><td><span class="prazo">GOV SÃO PAULO SEFAZ</span></td></tr>
-              <tr><td class="valor-alto">R$ 11.572,50</td></tr>
-              <tr><td><span class="prazo">PREF. BELO HORIZONTE</span></td></tr>
-              <tr><td class="valor-alto">R$ 8.229,57</td></tr>
-              <tr><td><span class="prazo">PREF. SÃO LUÍS</span></td></tr>
-              <tr><td class="valor-alto">R$ 6.562,00</td></tr>
-            </tbody></table>
+            <table>
+              <tbody>
+                <tr>
+                  <td class="prazo">GOV SÃO PAULO SEFAZ</td>
+                </tr>
+                <tr>
+                  <td class="valor-alto">R$ 11.572,50</td>
+                </tr>
+                <tr>
+                  <td class="prazo">PREF. BELO HORIZONTE</td>
+                </tr>
+                <tr>
+                  <td class="valor-alto">R$ 8.229,57</td>
+                </tr>
+                <tr>
+                  <td class="prazo">PREF. SÃO LUÍS</td>
+                </tr>
+                <tr>
+                  <td class="valor-alto">R$ 6.562,00</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-ocred">
             <h2>TICKETS MÉDIOS</h2>
-            <table class="tabela-valores"><tbody>
-              <tr><td class="orgao">Gov. Maranhão</td><td class="valor">R$ 4.226,88</td></tr>
-              <tr><td class="orgao">Pref. Uberlândia</td><td class="valor">R$ 4.136,07</td></tr>
-              <tr><td class="orgao">Pref. Betim</td><td class="valor">R$ 4.063,21</td></tr>
-              <tr><td class="orgao">Pref. Nova Lima</td><td class="valor">R$ 3.826,00</td></tr>
-              <tr><td class="orgao">Pref. Serra</td><td class="valor">R$ 3.325,42</td></tr>
-              <tr><td class="orgao">Pref. Cotia</td><td class="valor">R$ 3.143,89</td></tr>
-              <tr><td class="orgao">Gov. Goiás</td><td class="valor">R$ 2.754,69</td></tr>
-              <tr><td class="orgao">Pref. S. J. Campos</td><td class="valor">R$ 2.291,25</td></tr>
-            </tbody></table>
+            <table class="tabela-valores">
+              <tbody>
+                <tr>
+                  <td class="orgao">Gov. Maranhão</td>
+                  <td class="valor">R$ 4.226,88</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. Uberlândia</td>
+                  <td class="valor">R$ 4.136,07</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. Betim</td>
+                  <td class="valor">R$ 4.063,21</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. Nova Lima</td>
+                  <td class="valor">R$ 3.826,00</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. Serra</td>
+                  <td class="valor">R$ 3.325,42</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. Cotia</td>
+                  <td class="valor">R$ 3.143,89</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Gov. Goiás</td>
+                  <td class="valor">R$ 2.754,69</td>
+                </tr>
+                <tr>
+                  <td class="orgao">Pref. S. J. Campos</td>
+                  <td class="valor">R$ 2.291,25</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="bloco-ocred">
             <h2>INSIGHT ESTRATÉGICO</h2>
+
             <div class="insight-container">
               <div class="insight-item">
                 <span class="marcador">★</span>
@@ -337,6 +796,7 @@
                   expressivamente o volume de vendas.
                 </p>
               </div>
+
               <div class="insight-item destaque-sucesso">
                 <span class="marcador">✔</span>
                 <p>
@@ -350,7 +810,7 @@
         </div>
       </section>
 
-      <!-- CONVÊNIOS E MODALIDADES POR REGIÃO -->
+      <!-- TELA 9 - CONVÊNIOS POR REGIÃO -->
       <section class="card card-convenios-regiao">
         <div class="titulo titulo-convenios-regiao">
           CONVÊNIOS E MODALIDADES POR REGIÃO
@@ -359,60 +819,216 @@
         <div class="regioes-grid">
           <div class="bloco-regiao regiao-sudeste">
             <h2>SUDESTE</h2>
+
             <ul class="lista-dupla">
-              <li><span>Gov. São Paulo</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Aracruz (ES)</span><div class="tags"><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Araraquara (SP)</span><div class="tags"><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Belo Horizonte (MG)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Bragança Paulista (SP)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Cajamar (SP)</span><div class="tags"><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Campinas (SP)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Itaquaquecetuba (SP)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Itupeva (SP)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Mauá (SP)</span><div class="tags"><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Montes Claros</span><div class="tags"><span class="tag emp">EMP</span></div></li>
-              <li><span>Pref. Santana de Parnaíba (SP)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Serra (ES)</span><div class="tags"><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. São José dos Campos (SP)</span><div class="tags"><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. São Paulo (SP)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Sorocaba (SP)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Taubaté (SP)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. Uberaba (MG)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>Pref. IPMO-Osasco</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>IPREF-Guarulhos</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>IPREM</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>SPPREV</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
+              <li>
+                <span>Gov. São Paulo</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Aracruz (ES)</span>
+                <div class="tags">
+                  <span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Araraquara (SP)</span>
+                <div class="tags">
+                  <span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Belo Horizonte (MG)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Bragança Paulista (SP)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Cajamar (SP)</span>
+                <div class="tags"><span class="tag rmc">RMC</span></div>
+              </li>
+              <li>
+                <span>Pref. Campinas (SP)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Itaquaquecetuba (SP)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Itupeva (SP)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Mauá (SP)</span>
+                <div class="tags">
+                  <span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Montes Claros</span>
+                <div class="tags"><span class="tag emp">EMP</span></div>
+              </li>
+              <li>
+                <span>Pref. Santana de Parnaíba (SP)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Serra (ES)</span>
+                <div class="tags">
+                  <span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. São José dos Campos (SP)</span>
+                <div class="tags"><span class="tag rmc">RMC</span></div>
+              </li>
+              <li>
+                <span>Pref. São Paulo (SP)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Sorocaba (SP)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Taubaté (SP)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. Uberaba (MG)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>Pref. IPMO-Osasco</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>IPREF-Guarulhos</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>IPREM</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>SPPREV</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
             </ul>
           </div>
 
           <div class="bloco-regiao">
             <h2>NORDESTE</h2>
+
             <ul>
-              <li><span>Gov. Alagoas</span><div class="tags"><span class="tag rmc">RMC</span><span class="tag emp">EMP</span><span class="tag compra">COMPRA</span></div></li>
-              <li><span>Gov. Ceará</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Gov. Piauí</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Cabedelo (PB)</span><div class="tags"><span class="tag as">AS</span></div></li>
-              <li><span>Pref. Campina Grande (PB)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Caucaia (CE)</span><div class="tags"><span class="tag as">AS</span></div></li>
-              <li><span>Pref. João Pessoa (PB)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Juazeiro do Norte (CE)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Maceió (AL)</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>Pref. Mossoró (RN)</span><div class="tags"><span class="tag emp">EMP</span><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>TJ-AL</span><div class="tags"><span class="tag rcc">RCC</span><span class="tag rmc">RMC</span></div></li>
-              <li><span>IPM-JP</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
-              <li><span>PREVIJUNO</span><div class="tags"><span class="tag rcc">RCC</span></div></li>
+              <li>
+                <span>Gov. Alagoas</span>
+                <div class="tags">
+                  <span class="tag rmc">RMC</span
+                  ><span class="tag emp">EMP</span
+                  ><span class="tag compra">COMPRA</span>
+                </div>
+              </li>
+              <li>
+                <span>Gov. Ceará</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Gov. Piauí</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Cabedelo (PB)</span>
+                <div class="tags"><span class="tag as">AS</span></div>
+              </li>
+              <li>
+                <span>Pref. Campina Grande (PB)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Caucaia (CE)</span>
+                <div class="tags"><span class="tag as">AS</span></div>
+              </li>
+              <li>
+                <span>Pref. João Pessoa (PB)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Juazeiro do Norte (CE)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Maceió (AL)</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>Pref. Mossoró (RN)</span>
+                <div class="tags">
+                  <span class="tag emp">EMP</span
+                  ><span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>TJ-AL</span>
+                <div class="tags">
+                  <span class="tag rcc">RCC</span
+                  ><span class="tag rmc">RMC</span>
+                </div>
+              </li>
+              <li>
+                <span>IPM-JP</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
+              <li>
+                <span>PREVIJUNO</span>
+                <div class="tags"><span class="tag rcc">RCC</span></div>
+              </li>
             </ul>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="progresso" aria-hidden="true">
+    <div class="progresso">
       <div class="barra" id="barraProgresso"></div>
     </div>
 
     <div class="atalhos-hint">
-      ← ANTERIOR&nbsp;&nbsp; → PRÓXIMO&nbsp;&nbsp; ESPAÇO PAUSAR
+      ← ANTERIOR &nbsp; | &nbsp; → PRÓXIMO &nbsp; | &nbsp; ESPAÇO PAUSAR &nbsp;
+      | &nbsp; F TELA CHEIA
     </div>
 
     <script src="script.js"></script>
