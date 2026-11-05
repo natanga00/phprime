@@ -1,8 +1,3 @@
-/* =========================================
-   PH PRIME PROMOTORA - PAINEL TV
-   Resolução-base: 1280 x 720
-========================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -10,19 +5,19 @@
 }
 
 :root {
-  --fundo: #071426;
+  --bg: #071426;
   --card: #102238;
-  --card2: #172d46;
-  --borda: rgba(148, 163, 184, 0.18);
+  --linha: #334155;
   --texto: #f8fafc;
-  --suave: #cbd5e1;
+  --texto-suave: #cbd5e1;
   --azul: #60a5fa;
   --verde: #34d399;
   --amarelo: #fbbf24;
   --vermelho: #fb7185;
   --laranja: #fb923c;
-  --altura-header: 82px;
-  --altura-progresso: 5px;
+  --sombra: 0 8px 22px rgba(0, 0, 0, 0.25);
+  --alt-header: 82px;
+  --alt-barra: 5px;
 }
 
 html {
@@ -51,10 +46,8 @@ body {
   font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* CABEÇALHO */
-
 .topbar {
-  height: var(--altura-header);
+  height: var(--alt-header);
   padding: 0 30px;
   display: flex;
   align-items: center;
@@ -62,7 +55,7 @@ body {
   gap: 22px;
   background: linear-gradient(100deg, #102a4c, #123b68 58%, #0d2a4b);
   border-bottom: 1px solid rgba(125, 178, 255, 0.22);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  box-shadow: var(--sombra);
 }
 
 .marca {
@@ -164,12 +157,10 @@ body {
   letter-spacing: 1px;
 }
 
-/* ÁREA DOS SLIDES */
-
 main {
   position: relative;
   width: 1280px;
-  height: calc(720px - var(--altura-header) - var(--altura-progresso));
+  height: calc(720px - var(--alt-header) - var(--alt-barra));
 }
 
 .card {
@@ -177,7 +168,7 @@ main {
   inset: 0;
   display: none;
   flex-direction: column;
-  padding: 17px 20px 16px;
+  padding: 15px 18px;
 }
 
 .card.ativo {
@@ -188,15 +179,11 @@ main {
 @keyframes entrada {
   from {
     opacity: 0;
-    transform: translateX(10px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
   }
 }
-
-/* TÍTULOS */
 
 .titulo,
 .titulo-condicoes-mg,
@@ -204,19 +191,18 @@ main {
 .titulo-novo-daycoval,
 .titulo-ocred-master {
   flex-shrink: 0;
-  height: 48px;
   min-height: 48px;
-  margin-bottom: 13px;
-  padding: 0 18px;
-  border-radius: 11px;
+  height: 48px;
+  margin-bottom: 12px;
+  padding: 0 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
   font-size: 23px;
   font-weight: 800;
-  letter-spacing: 0.75px;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  letter-spacing: 0.5px;
+  box-shadow: var(--sombra);
 }
 
 .titulo-amigoz {
@@ -240,8 +226,6 @@ main {
   background: linear-gradient(100deg, #9a3412, #ea580c);
 }
 
-/* BLOCOS */
-
 .principal,
 .box,
 .bloco-opcao,
@@ -255,9 +239,9 @@ main {
   overflow: hidden;
   padding: 12px;
   background: linear-gradient(155deg, #16273d, #0d1c2e);
-  border: 1px solid var(--borda);
-  border-radius: 13px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
 }
 
 .dashboard {
@@ -269,14 +253,18 @@ main {
 }
 
 .principal h2,
-.box h3 {
+.box h3,
+.bloco-opcao h2,
+.bloco-regra h2,
+.bloco-ocred h2,
+.bloco-regiao h2 {
   flex-shrink: 0;
   margin-bottom: 8px;
   padding-bottom: 5px;
   font-size: 21px;
   font-weight: 700;
   color: #93c5fd;
-  border-bottom: 1px solid var(--borda);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
 }
 
 aside {
@@ -312,8 +300,8 @@ thead th {
 }
 
 tbody td {
-  padding: 8px 6px;
-  font-size: 20px;
+  padding: 7px 6px;
+  font-size: 19px;
   font-weight: 600;
   text-align: center;
   color: white;
@@ -339,7 +327,8 @@ tbody tr:nth-child(even) {
 }
 
 .idade {
-  color: #e2e8f0;
+  color: var(--amarelo);
+  font-weight: 800;
 }
 
 .destaque-vermelho {
@@ -366,7 +355,7 @@ tbody tr:nth-child(even) {
 .box li {
   position: relative;
   padding-left: 28px;
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.3;
   color: #f1f5f9;
 }
@@ -386,11 +375,11 @@ tbody tr:nth-child(even) {
 }
 
 .amigoz-card .principal thead th {
-  font-size: 22px;
+  font-size: 21px;
 }
 
 .amigoz-card .principal tbody td {
-  font-size: 24px;
+  font-size: 23px;
 }
 
 .amigoz-card aside .box:first-child {
@@ -398,10 +387,10 @@ tbody tr:nth-child(even) {
 }
 
 .amigoz-card .box table.mini tbody td {
-  font-size: 21px;
+  font-size: 19px;
 }
 
-/* IDADES GOV SP */
+/* IDADES GOV-SP */
 
 .govsp-card .gov-container {
   flex: 1;
@@ -428,10 +417,10 @@ tbody tr:nth-child(even) {
   align-items: center;
   gap: 10px;
   padding: 0 16px;
-  background: linear-gradient(100deg, #14263d, #102036);
-  border: 1px solid var(--borda);
-  border-left: 4px solid #fb7185;
-  border-radius: 10px;
+  background: #14263d;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-left: 4px solid var(--vermelho);
+  border-radius: 9px;
 }
 
 .govsp-card .gov-item.clt {
@@ -445,10 +434,10 @@ tbody tr:nth-child(even) {
 }
 
 .govsp-card .gov-item p {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   text-align: right;
-  color: #6ee7b7;
+  color: var(--verde);
 }
 
 .gov-observacoes {
@@ -460,9 +449,8 @@ tbody tr:nth-child(even) {
 }
 
 .gov-observacoes h3 {
-  margin-bottom: 4px;
-  padding-bottom: 4px;
-  font-size: 20px;
+  margin-bottom: 5px;
+  font-size: 19px;
   color: var(--azul);
 }
 
@@ -471,21 +459,12 @@ tbody tr:nth-child(even) {
 }
 
 .gov-observacoes li {
-  position: relative;
-  padding-left: 22px;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #e2e8f0;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--texto-suave);
 }
 
-.gov-observacoes li::before {
-  content: "•";
-  position: absolute;
-  left: 4px;
-  color: var(--azul);
-}
-
-/* MARGENS GOV SP E MG */
+/* MARGENS GOV-SP E GOV-MG */
 
 .margem-card .dashboard,
 .margem-mg-card .dashboard {
@@ -496,13 +475,13 @@ tbody tr:nth-child(even) {
 
 .margem-card .principal,
 .margem-mg-card .principal {
-  padding: 10px 13px;
+  padding: 9px 12px;
   border-top: 3px solid #3b82f6;
 }
 
 .margem-card .principal h2,
 .margem-mg-card .principal h2 {
-  font-size: 20px;
+  font-size: 19px;
   text-align: center;
 }
 
@@ -513,16 +492,11 @@ tbody tr:nth-child(even) {
   line-height: 1.2;
 }
 
-.margem-card .principal tr.nao td,
-.margem-mg-card .principal tr.nao td {
+.margem-mg-card .texto-longo td {
   font-size: 15px;
 }
 
-.margem-mg-card .texto-longo td {
-  font-size: 16px;
-}
-
-/* CONDIÇÕES COMERCIAIS */
+/* CONDIÇÕES MG E SP */
 
 .card-condicoes-mg .dashboard-grade,
 .card-condicoes-sp .dashboard-grade,
@@ -541,13 +515,7 @@ tbody tr:nth-child(even) {
 .bloco-opcao h2,
 .bloco-regra h2,
 .bloco-ocred h2 {
-  flex-shrink: 0;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  font-size: 21px;
   text-align: center;
-  color: #93c5fd;
-  border-bottom: 1px solid var(--borda);
 }
 
 .bloco-opcao tbody td {
@@ -566,19 +534,18 @@ tbody tr:nth-child(even) {
 }
 
 .bloco-regra td {
-  padding: 12px 5px;
-  font-size: 19px;
+  padding: 10px 5px;
+  font-size: 18px;
 }
 
 .bloco-regra td.idade {
   font-size: 38px;
   font-weight: 800;
-  color: var(--amarelo);
 }
 
 .bloco-regra td.nota {
   font-size: 16px;
-  color: var(--suave);
+  color: var(--texto-suave);
 }
 
 .alerta-seguranca {
@@ -614,24 +581,24 @@ tbody tr:nth-child(even) {
 }
 
 .bloco-ocred tbody td {
-  font-size: 19px;
+  font-size: 18px;
   border: none;
 }
 
 .bloco-ocred td.valor-alto {
-  font-size: 27px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--verde);
 }
 
 .bloco-ocred table.tabela-valores tbody td {
-  padding: 5px;
-  font-size: 17px;
+  padding: 4px;
+  font-size: 16px;
 }
 
 .bloco-ocred td.orgao {
   text-align: left;
-  color: var(--suave);
+  color: var(--texto-suave);
 }
 
 .bloco-ocred td.valor {
@@ -669,14 +636,14 @@ tbody tr:nth-child(even) {
   line-height: 1.3;
 }
 
-/* CONVÊNIOS POR REGIÃO */
+/* CONVÊNIOS */
 
 .regioes-grid {
   flex: 1;
   min-height: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 13px;
+  gap: 12px;
 }
 
 .bloco-regiao {
@@ -684,13 +651,7 @@ tbody tr:nth-child(even) {
 }
 
 .bloco-regiao h2 {
-  flex-shrink: 0;
-  margin-bottom: 8px;
-  padding-bottom: 5px;
-  font-size: 21px;
   text-align: center;
-  color: var(--azul);
-  border-bottom: 1px solid var(--borda);
 }
 
 .bloco-regiao ul {
@@ -755,14 +716,14 @@ tbody tr:nth-child(even) {
   background: #dc2626;
 }
 
-/* PROGRESSO E ATALHOS */
+/* BARRA DE PROGRESSO */
 
 .progresso {
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   width: 100%;
-  height: var(--altura-progresso);
+  height: var(--alt-barra);
   background: rgba(148, 163, 184, 0.16);
   z-index: 30;
 }
@@ -785,8 +746,6 @@ tbody tr:nth-child(even) {
   letter-spacing: 1px;
   pointer-events: none;
 }
-
-/* RESPONSIVIDADE E ACESSIBILIDADE */
 
 @media (prefers-reduced-motion: reduce) {
   .card.ativo {

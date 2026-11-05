@@ -1,9 +1,11 @@
 (() => {
   "use strict";
 
-  const DURACAO = 30;
-  const LARGURA = 1280;
-  const ALTURA = 720;
+  const CONFIG = {
+    largura: 1280,
+    altura: 720,
+    duracaoSlide: 30,
+  };
 
   const cards = Array.from(document.querySelectorAll("#painel > .card"));
 
@@ -11,17 +13,17 @@
   const indicador = document.getElementById("slideAtual");
   const barra = document.getElementById("barraProgresso");
 
-  if (!cards.length) {
-    console.error("PH Prime: nenhum card encontrado.");
+  if (cards.length === 0) {
+    console.error("PH Prime: nenhum card foi encontrado.");
     return;
   }
 
-  let indice = 0;
-  let tempo = 0;
+  let indiceAtual = 0;
+  let tempoDecorrido = 0;
   let pausado = false;
   let ultimoFrame = performance.now();
 
-  const total = cards.length;
+  const totalCards = cards.length;
 
   function atualizarRelogio() {
     if (!relogio) return;
@@ -34,73 +36,86 @@
     }).format(new Date());
   }
 
-  function atualizarIndicador() {
+  function atualizarIndicadores() {
     if (indicador) {
-      indicador.textContent = `${String(indice + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+      const atual = String(indiceAtual + 1).padStart(2, "0");
+      const total = String(totalCards).padStart(2, "0");
+
+      indicador.textContent = `${atual} / ${total}`;
     }
 
     if (barra) {
-      barra.style.width = `${Math.min(100, (tempo / DURACAO) * 100)}%`;
+      const percentual = Math.min(
+        100,
+        (tempoDecorrido / CONFIG.duracaoSlide) * 100,
+      );
+
+      barra.style.width = `${percentual}%`;
     }
   }
 
   function mostrarSlide(novoIndice) {
-    indice = (novoIndice + total) % total;
+    indiceAtual = (novoIndice + totalCards) % totalCards;
 
-    cards.forEach((card, i) => {
-      const ativo = i === indice;
+    cards.forEach((card, index) => {
+      const ativo = index === indiceAtual;
 
       card.classList.toggle("ativo", ativo);
       card.setAttribute("aria-hidden", String(!ativo));
     });
 
-    tempo = 0;
-    atualizarIndicador();
+    tempoDecorrido = 0;
+    atualizarIndicadores();
   }
 
-  function proximo() {
-    mostrarSlide(indice + 1);
+  function proximoSlide() {
+    mostrarSlide(indiceAtual + 1);
   }
 
-  function anterior() {
-    mostrarSlide(indice - 1);
+  function slideAnterior() {
+    mostrarSlide(indiceAtual - 1);
   }
 
   function alternarPausa() {
     pausado = !pausado;
 
     document.body.classList.toggle("painel-pausado", pausado);
+
+    console.info(pausado ? "Painel pausado." : "Painel retomado.");
   }
 
   function ajustarEscala() {
     const escala = Math.min(
-      window.innerWidth / LARGURA,
-      window.innerHeight / ALTURA,
+      window.innerWidth / CONFIG.largura,
+      window.innerHeight / CONFIG.altura,
     );
 
-    const x = (window.innerWidth - LARGURA * escala) / 2;
-    const y = (window.innerHeight - ALTURA * escala) / 2;
+    const deslocamentoX = (window.innerWidth - CONFIG.largura * escala) / 2;
 
-    document.body.style.transform = `translate(${x}px, ${y}px) scale(${escala})`;
+    const deslocamentoY = (window.innerHeight - CONFIG.altura * escala) / 2;
+
+    document.body.style.transform = `translate(${deslocamentoX}px, ${deslocamentoY}px) scale(${escala})`;
   }
 
-  function telaCheia() {
+  function alternarTelaCheia() {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen?.().catch(() => {});
+      document.documentElement.requestFullscreen().catch((erro) => {
+        console.warn("Não foi possível ativar tela cheia:", erro);
+      });
     } else {
-      document.exitFullscreen?.().catch(() => {});
+      document.exitFullscreen().catch(() => {});
     }
   }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      proximo();
+      proximoSlide();
     }
 
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      anterior();
+      slideAnterior();
     }
 
     if (event.code === "Space") {
@@ -113,32 +128,33 @@
     }
 
     if (event.key === "End") {
-      mostrarSlide(total - 1);
+      mostrarSlide(totalCards - 1);
     }
 
     if (event.key.toLowerCase() === "f") {
-      telaCheia();
+      alternarTelaCheia();
     }
   });
 
   function animar(agora) {
-    const delta = Math.min((agora - ultimoFrame) / 1000, 0.25);
+    const diferenca = Math.min((agora - ultimoFrame) / 1000, 0.25);
 
     ultimoFrame = agora;
 
     if (!pausado) {
-      tempo += delta;
+      tempoDecorrido += diferenca;
 
-      if (tempo >= DURACAO) {
-        proximo();
+      if (tempoDecorrido >= CONFIG.duracaoSlide) {
+        proximoSlide();
       } else {
-        atualizarIndicador();
+        atualizarIndicadores();
       }
     }
 
     requestAnimationFrame(animar);
   }
 
+  // Inicialização
   atualizarRelogio();
   setInterval(atualizarRelogio, 1000);
 
@@ -153,9 +169,10 @@
 
   requestAnimationFrame(animar);
 
+  // Controle externo, caso necessário.
   window.PHPrimePainel = {
-    proximo,
-    anterior,
+    proximo: proximoSlide,
+    anterior: slideAnterior,
     pausar: alternarPausa,
     irPara: mostrarSlide,
   };
