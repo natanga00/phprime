@@ -66,3 +66,18 @@ document.addEventListener("keydown", (e) => {
     restante = TEMPO;
   }
 });
+
+/*=========================================================
+    ESCALA AUTOMÁTICA (palco 1280x720)
+=========================================================*/
+function ajustarEscala() {
+  const W = 1280,
+    H = 720;
+  const SEGURANCA = 0.97; // folga contra overscan da TV
+  const s = Math.min(innerWidth / W, innerHeight / H) * SEGURANCA;
+  const x = (innerWidth - W * s) / 2;
+  const y = (innerHeight - H * s) / 2;
+  document.body.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+}
+window.addEventListener("resize", ajustarEscala);
+ajustarEscala();
