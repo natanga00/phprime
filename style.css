@@ -1,5 +1,13 @@
 /* ===========================================================
-   1. RESET, VARIÁVEIS E CONFIGURAÇÃO GLOBAL (TV 32" 1280x720)
+   PH PRIME PROMOTORA – PAINEL PARA TV
+   Palco fixo de 1280x720, escalado pelo script.js (ajustarEscala).
+   Regra de leitura a distância:
+     texto principal  >= 26px
+     texto secundário >= 18px
+   =========================================================== */
+
+/* ===========================================================
+   1. RESET E VARIÁVEIS
 =========================================================== */
 * {
   margin: 0;
@@ -8,58 +16,78 @@
 }
 
 :root {
-  --bg: #0f172a;
+  --bg: #0b1220;
   --card: #1e293b;
-  --line: #334155;
-  --text: #ffffff;
-  --text2: #cbd5e1;
-  --shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
+  --linha: #334155;
+  --texto: #ffffff;
+  --texto-suave: #cbd5e1;
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Poppins", sans-serif;
-  filter: contrast(120%) brightness(95%) saturate(110%);
+  --azul: #60a5fa;
+  --verde: #22c55e;
+  --amarelo: #facc15;
+  --vermelho: #ef4444;
+  --laranja: #f97316;
+
+  --sombra: 0 6px 15px rgba(0, 0, 0, 0.4);
+
+  --alt-header: 60px;
+  --alt-barra: 6px;
 }
 
 /* ===========================================================
-   2. HEADER E ELEMENTOS FIXOS
+   2. PALCO 1280x720 E HEADER
 =========================================================== */
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  transform-origin: 0 0; /* o script.js aplica o scale/translate */
+  background: var(--bg);
+  color: var(--texto);
+  font-family: "Poppins", sans-serif;
+}
+
 header {
-  height: 65px;
+  height: var(--alt-header);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 25px;
+  padding: 0 24px;
   background: linear-gradient(90deg, #1e3a8a, #2563eb);
-  box-shadow: var(--shadow);
+  box-shadow: var(--sombra);
 }
 
 .empresa h1 {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 #hora {
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ffffff;
+  font-variant-numeric: tabular-nums;
 }
 
-/* BARRA DE PROGRESSO TIMING */
+/* barra de progresso do tempo de cada slide */
 .progresso {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 5px;
+  height: var(--alt-barra);
   background: #1e293b;
+  z-index: 10;
 }
 
 .barra {
@@ -70,117 +98,160 @@ header {
 }
 
 /* ===========================================================
-   3. ESTRUTURA BASE DOS CARDS (MAIN & DASHBOARD)
+   3. ESTRUTURA DOS CARDS (SLIDES)
 =========================================================== */
 main {
-  width: 100vw;
-  height: calc(100vh - 70px);
   position: relative;
+  width: 1280px;
+  height: calc(720px - var(--alt-header) - var(--alt-barra));
 }
 
-.card,
-.card-condicoes-mg,
-.card-condicoes-sp,
-.card-novo-daycoval,
-.card-ocred-master {
+.card {
   position: absolute;
   inset: 0;
   display: none;
-  padding: 12px;
   flex-direction: column;
+  padding: 10px 12px;
 }
 
-.card.ativo,
-.card-condicoes-mg.ativo,
-.card-condicoes-sp.ativo,
-.card-novo-daycoval.ativo,
-.card-ocred-master.ativo {
-  display: flex !important;
+.card.ativo {
+  display: flex;
+  animation: entrada 0.5s ease-out;
 }
 
+@keyframes entrada {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* barra de título de cada slide */
 .titulo,
 .titulo-condicoes-mg,
 .titulo-condicoes-sp,
 .titulo-novo-daycoval,
 .titulo-ocred-master {
-  height: 42px;
+  flex-shrink: 0;
+  height: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border-radius: 8px;
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: 1px;
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
+  box-shadow: var(--sombra);
 }
 
+/* cores dos títulos */
+.titulo-amigoz {
+  background: linear-gradient(90deg, #0891b2, #06b6d4);
+}
+.titulo-govsp,
+.titulo-margem,
+.titulo-margem-mg,
+.titulo-condicoes-mg,
+.titulo-condicoes-sp {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+.titulo-novo-daycoval,
+.titulo-convenios-regiao {
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
+}
+.titulo-ocred-master {
+  background: linear-gradient(90deg, #ea580c, #f97316);
+}
+
+/* ===========================================================
+   4. COMPONENTES COMUNS
+=========================================================== */
+
+/* ---- grade principal de 2 colunas ---- */
 .dashboard {
   flex: 1;
+  min-height: 0;
   display: grid;
-  gap: 12px;
-  overflow: hidden;
   grid-template-columns: 53% 47%;
+  gap: 12px;
 }
 
-.principal {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: var(--shadow);
+/* ---- bloco/painel ---- */
+.principal,
+.box {
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 12px 14px;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
 }
 
 .principal h2 {
-  color: #60a5fa;
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: 700;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  margin-bottom: 8px;
   padding-bottom: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--azul);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.box h3 {
+  flex-shrink: 0;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--azul);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 aside {
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.box {
+aside .box {
   flex: 1;
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
-/* TABELAS GERAIS */
+/* ---- tabelas ---- */
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
+/* a tabela ocupa a altura que sobra no bloco; as linhas se distribuem */
+.principal > table,
+.bloco-opcao > table,
+.bloco-ocred > table,
+.box > table {
+  flex: 1;
+}
+
 thead th {
   padding: 8px 6px;
-  color: white;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
-  background: #3a475c;
   text-align: center;
+  color: #fff;
+  background: #3a475c;
 }
 
 tbody td {
-  padding: 9px 6px;
-  font-size: 18px;
-  color: white;
+  padding: 8px 6px;
+  font-size: 24px;
+  font-weight: 600;
   text-align: center;
-  font-weight: 500;
+  color: #fff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -191,421 +262,535 @@ tbody tr:nth-child(even) {
   background: #2b3a50;
 }
 
-.nao {
-  background: #b91c1c !important;
-}
-.nao td {
-  color: #ffffff !important;
-  font-weight: 800;
-}
-
+/* ---- utilitários de cor ---- */
 .valor {
-  color: #22c55e;
+  color: var(--verde);
   font-weight: 700;
 }
 .prazo {
-  color: #facc15;
-  font-weight: 600;
+  color: var(--amarelo);
+  font-weight: 700;
 }
 .idade {
   color: #e2e8f0;
 }
+.destaque-vermelho {
+  color: var(--vermelho);
+  font-weight: 700;
+}
 
-/* LISTAS GERAIS */
+.nao {
+  background: #b91c1c !important;
+}
+.nao td {
+  color: #fff !important;
+  font-weight: 800;
+}
+
+/* ---- listas com check ---- */
 .box ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
+
 .box li {
   position: relative;
-  padding-left: 20px;
-  font-size: 14px;
+  padding-left: 28px;
+  font-size: 22px;
+  line-height: 1.3;
   color: #f1f5f9;
 }
+
 .box li::before {
   content: "✔";
   position: absolute;
   left: 0;
-  color: #22c55e;
+  color: var(--verde);
   font-weight: 900;
 }
 
-.destaque-vermelho {
-  color: #ef4444;
-  font-weight: 700;
-}
-
 /* ===========================================================
-   4. AMIGOZ
+   5. AMIGOZ (GOV-MG)
 =========================================================== */
-.amigoz-card .titulo-amigoz {
-  background: linear-gradient(90deg, #0891b2, #06b6d4);
-}
 .amigoz-card .dashboard {
   grid-template-columns: 46% 54%;
 }
+
+.amigoz-card .principal thead th {
+  font-size: 24px;
+}
 .amigoz-card .principal tbody td {
-  padding: 10px 4px;
+  font-size: 28px;
+  padding: 6px 4px;
+}
+
+.amigoz-card aside .box:first-child {
+  flex: 1.3;
+}
+.amigoz-card .box table.mini thead th {
   font-size: 22px;
 }
 .amigoz-card .box table.mini tbody td {
-  font-size: 22px;
+  font-size: 26px;
 }
 
 /* ===========================================================
-   5. GOVERNO DE SÃO PAULO
+   6. GOVERNO DE SÃO PAULO (IDADES MÁXIMAS)
 =========================================================== */
-.govsp-card .titulo-govsp {
-  background: linear-gradient(90deg, #dc2626, #ef4444);
-}
 .govsp-card .gov-container {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-.govsp-card .gov-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
+
+/* 7 linhas x 2 colunas, ocupando toda a altura disponível */
+.govsp-card .gov-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  grid-auto-flow: column; /* preenche coluna por coluna */
+  gap: 6px 12px;
+}
+
 .govsp-card .gov-item {
+  min-height: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 14px;
+  gap: 10px;
+  padding: 0 16px;
+  background: var(--card);
+  border-left: 5px solid var(--vermelho);
   border-radius: 8px;
-  background: #1e293b;
-  border-left: 5px solid #ef4444;
-  box-shadow: var(--shadow);
+  box-shadow: var(--sombra);
 }
+
+/* itens CLT (borda amarela) vão para o fim, depois do BTW,
+   independentemente da ordem no HTML */
+.govsp-card .gov-item[style*="facc15"] {
+  order: 1;
+}
+
 .govsp-card .gov-item h4 {
-  font-size: 25px;
-}
-.govsp-card .gov-item p {
-  color: #22c55e;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
 }
+
+.govsp-card .gov-item p {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: right;
+  color: var(--verde);
+}
+
 .govsp-card .gov-observacoes {
-  background: #1e293b;
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: var(--card);
   border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-  flex: 1;
 }
+
 .govsp-card .gov-observacoes h3 {
-  color: #60a5fa;
-  font-size: 25px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 4px;
+  padding-bottom: 2px;
+  font-size: 24px;
+  color: var(--azul);
+  border-bottom: 1px solid var(--linha);
 }
+
+.govsp-card .gov-observacoes ul {
+  list-style: none;
+}
+
 .govsp-card .gov-observacoes li {
-  font-size: 25px;
-  line-height: 1.35;
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 2px;
+  font-size: 22px;
+  line-height: 1.25;
   color: #e2e8f0;
-  margin-bottom: 5px;
+}
+
+.govsp-card .gov-observacoes li::before {
+  content: "•";
+  position: absolute;
+  left: 4px;
+  color: var(--azul);
 }
 
 /* ===========================================================
-   6. GRADES DE MARGENS (GOVSP & GOVMG)
+   7. MARGENS DE SEGURANÇA (GOVSP E GOVMG) – grade 3x3
 =========================================================== */
-.margem-card .titulo-margem,
-.card.margem-mg-card .titulo-margem-mg {
-  background: linear-gradient(90deg, #dc2626, #ef4444);
-}
 .margem-card .dashboard,
-.card.margem-mg-card .dashboard {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+.margem-mg-card .dashboard {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  height: calc(100% - 52px);
 }
+
 .margem-card .principal,
-.card.margem-mg-card .principal {
-  padding: 10px;
-  border-top: 3px solid #ef4444;
+.margem-mg-card .principal {
+  padding: 8px 12px;
+  border-top: 3px solid var(--vermelho);
 }
+
 .margem-card .principal h2,
-.card.margem-mg-card .principal h2 {
-  font-size: 20px;
+.margem-mg-card .principal h2 {
+  font-size: 22px;
   text-align: center;
 }
+
 .margem-card .principal tbody td,
-.card.margem-mg-card .principal tbody td {
-  font-size: 18px;
-  background: transparent !important;
+.margem-mg-card .principal tbody td {
+  padding: 4px;
+  font-size: 20px;
+  text-align: left;
   border: none;
 }
-.card.margem-mg-card .texto-longo td {
-  font-size: 14px !important;
-  text-align: left;
+
+/* ajusta os textos que vêm com font-size inline no HTML */
+.margem-card .principal tr.nao td,
+.margem-mg-card .principal tr.nao td {
+  font-size: 17px !important;
+  text-align: center;
+}
+
+.margem-card .principal td.valor[style],
+.margem-mg-card .principal td.valor[style] {
+  font-size: 22px !important;
+  text-align: center;
+}
+
+.margem-mg-card .texto-longo td {
+  font-size: 17px !important;
+  line-height: 1.2;
 }
 
 /* ===========================================================
-   7. MELHORES CONDIÇÕES (MG e SP)
+   8. MELHORES CONDIÇÕES COMERCIAIS (MG E SP)
 =========================================================== */
-.titulo-condicoes-mg,
-.titulo-condicoes-sp {
-  background: linear-gradient(90deg, #dc2626, #ef4444);
-}
 .card-condicoes-mg .dashboard-grade,
 .card-condicoes-sp .dashboard-grade {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  height: calc(100% - 52px);
 }
+
 .bloco-opcao {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   padding: 14px;
   background: var(--card);
+  border-top: 3px solid var(--vermelho);
   border-radius: 8px;
-  border-top: 3px solid #ef4444;
-  box-shadow: var(--shadow);
+  box-shadow: var(--sombra);
 }
+
 .bloco-opcao h2 {
-  font-size: 20px;
-  color: #60a5fa;
-  text-align: center;
+  flex-shrink: 0;
   margin-bottom: 10px;
+  padding-bottom: 4px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--azul);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .bloco-opcao tbody td {
-  font-size: 18px;
+  font-size: 28px;
   text-align: center;
   border: none;
 }
 
+.card-condicoes-mg .bloco-opcao tbody td {
+  font-size: 32px;
+}
+
 /* ===========================================================
-   8. NOVO DAYCOVAL GOV SP
+   9. NOVO DAYCOVAL – GOV SP
+   Rótulo em cima, valor grande embaixo (cabe no 32")
 =========================================================== */
-.titulo-novo-daycoval {
-  background: linear-gradient(90deg, #1e3a8a, #0284c7);
-}
 .card-novo-daycoval .dashboard-grade {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  height: calc(100% - 52px);
 }
+
 .bloco-regra {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   padding: 14px;
   background: var(--card);
-  border-radius: 8px;
   border-top: 3px solid #0284c7;
-  box-shadow: var(--shadow);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
 }
+
 .bloco-regra h2 {
-  font-size: 20px;
-  color: #60a5fa;
-  text-align: center;
+  flex-shrink: 0;
   margin-bottom: 10px;
+  padding-bottom: 4px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--azul);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.bloco-regra tbody td {
-  font-size: 16px;
+
+.bloco-regra table {
+  flex: 1;
+  display: block;
+}
+
+.bloco-regra tbody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.bloco-regra tr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.bloco-regra td {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
   border: none;
 }
-.bloco-regra tbody td:first-child:not([colspan]) {
-  text-align: left;
+
+.bloco-regra td .prazo {
+  font-size: 20px;
 }
-.bloco-regra tbody td:last-child:not([colspan]) {
-  text-align: right;
+
+/* valor (segunda célula da linha) em destaque */
+.bloco-regra tr td:last-child:not(:first-child) {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
 }
+
+/* alertas */
 .alerta-seguranca {
   background: #b91c1c !important;
-}
-.alerta-seguranca td {
-  text-align: center !important;
-  font-weight: 700;
 }
 .alerta-desconto {
   background: #d97706 !important;
 }
+
+.alerta-seguranca td,
 .alerta-desconto td {
-  text-align: center !important;
+  font-size: 20px;
   font-weight: 700;
+  line-height: 1.25;
+}
+
+/* bloco de idade (use as classes .idade e .nota no HTML) */
+.bloco-regra td.idade {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--amarelo);
+}
+
+.bloco-regra td.nota {
+  font-size: 18px;
+  color: var(--texto-suave);
 }
 
 /* ===========================================================
-   9. COMPRA MASTER OCRED
+   10. BANCO OCRED – COMPRA DE CARTÃO MASTER
 =========================================================== */
-.titulo-ocred-master {
-  background: linear-gradient(90deg, #ea580c, #f97316);
-}
 .card-ocred-master .dashboard-grade {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1.1fr;
   gap: 10px;
-  height: calc(100% - 52px);
-}
-.bloco-ocred {
-  padding: 14px;
-  background: var(--card);
-  border-radius: 8px;
-  border-top: 3px solid #f97316;
-  box-shadow: var(--shadow);
-}
-.bloco-ocred h2 {
-  font-size: 20px;
-  color: #f97316;
-  text-align: center;
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.bloco-ocred tbody td {
-  font-size: 18px;
-  border: none;
-}
-.bloco-ocred table.tabela-valores tbody td {
-  padding: 4.5px 4px;
-  font-size: 16px;
-}
-.bloco-ocred td.orgao {
-  text-align: left;
-  color: #cbd5e1;
-}
-.bloco-ocred td.valor {
-  text-align: right;
-  color: #22c55e;
-}
-.bloco-ocred td.valor-alto {
-  font-size: 20px;
-  color: #22c55e;
-  font-weight: 800;
-  text-align: center;
 }
 
-.insight-container {
+.bloco-ocred {
+  min-height: 0;
   display: flex;
   flex-direction: column;
+  padding: 14px;
+  background: var(--card);
+  border-top: 3px solid var(--laranja);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
+}
+
+.bloco-ocred h2 {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  font-size: 24px;
+  text-align: center;
+  color: var(--laranja);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bloco-ocred tbody td {
+  font-size: 22px;
+  border: none;
+}
+
+.bloco-ocred td.valor-alto {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--verde);
+}
+
+.bloco-ocred table.tabela-valores tbody td {
+  padding: 4px;
+  font-size: 20px;
+}
+
+.bloco-ocred td.orgao {
+  text-align: left;
+  color: var(--texto-suave);
+}
+
+.bloco-ocred td.valor {
+  text-align: right;
+  color: var(--verde);
+}
+
+/* insights */
+.insight-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   gap: 12px;
 }
+
 .insight-item {
-  background: #1e293b;
-  border-radius: 8px;
-  padding: 12px;
-  border-left: 4px solid #f97316;
   display: flex;
   gap: 10px;
-  box-shadow: var(--shadow);
+  padding: 12px;
+  background: var(--card);
+  border-left: 4px solid var(--laranja);
+  border-radius: 8px;
+  box-shadow: var(--sombra);
 }
+
 .insight-item.destaque-sucesso {
-  border-left-color: #22c55e;
   background: #14532d;
+  border-left-color: var(--verde);
 }
+
+.insight-item .marcador {
+  font-size: 22px;
+}
+
 .insight-item p {
-  font-size: 15px;
+  font-size: 19px;
+  line-height: 1.3;
   color: #f1f5f9;
 }
 
 /* ===========================================================
-   9. COMPRA MASTER KARD
+   11. CONVÊNIOS E MODALIDADES POR REGIÃO
 =========================================================== */
-section.card-convenios-regiao {
-  position: absolute;
-  inset: 0;
-  display: none;
-  padding: 12px;
-  flex-direction: column;
-}
-
-section.card-convenios-regiao.ativo {
-  display: flex !important;
-}
-
-.titulo-convenios-regiao {
-  height: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  font-size: 25px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, #1e40af, #3b82f6);
-  box-shadow: var(--shadow);
-  flex-shrink: 0;
-}
-
-/* GRID PRINCIPAL EM 3 COLUNAS */
 .regioes-grid {
+  flex: 1;
+  min-height: 0;
   display: grid;
-  grid-template-columns: 2fr 1.2fr 1fr;
+  grid-template-columns: 2fr 1fr; /* Sudeste | Nordeste */
   gap: 10px;
-  height: calc(100% - 52px);
 }
 
 .bloco-regiao {
-  padding: 10px 12px;
-  background: var(--card);
-  border-radius: 8px;
-  border-top: 3px solid #3b82f6;
-  box-shadow: var(--shadow);
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.coluna-tripla {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.mini-bloco {
-  flex: 1;
+  padding: 10px 12px;
+  background: var(--card);
+  border-top: 3px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: var(--sombra);
 }
 
 .bloco-regiao h2 {
-  font-size: 20px;
-  color: #60a5fa;
-  text-align: center;
+  flex-shrink: 0;
   margin-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 4px;
-  text-transform: uppercase;
+  font-size: 24px;
   font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--azul);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bloco-regiao ul {
+  flex: 1;
+  min-height: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0;
 }
 
-/* LISTA DUPLA EM SUDESTE (22 ITENS) */
+/* Sudeste: 22 itens em 2 colunas x 11 linhas, lendo de cima para baixo */
 .bloco-regiao ul.lista-dupla {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(11, minmax(0, 1fr));
+  grid-auto-flow: column;
   gap: 4px 10px;
 }
 
 .bloco-regiao li {
+  flex: 1;
+  min-height: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
-  color: #f1f5f9;
+  gap: 6px;
+  padding: 2px 8px;
+  font-size: 18px;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 3px 6px;
+  line-height: 1.1;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
   border-radius: 4px;
 }
 
-.bloco-regiao li > span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-right: 4px;
+.bloco-regiao ul.lista-dupla li {
+  font-size: 17px;
 }
 
-/* TAGS / BADGES DAS MODALIDADES */
+/* nome pode quebrar em 2 linhas em vez de ser cortado */
+.bloco-regiao li > span {
+  white-space: normal;
+}
+
+/* tags das modalidades */
 .tags {
   display: flex;
   gap: 3px;
@@ -613,124 +798,27 @@ section.card-convenios-regiao.ativo {
 }
 
 .tag {
-  font-size: 10px;
+  padding: 1px 6px;
+  font-size: 12px;
   font-weight: 800;
-  padding: 1px 5px;
-  border-radius: 3px;
-  color: #ffffff;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 3px;
 }
 
 .tag.rcc {
-  background-color: #0284c7;
-} /* Azul Claro */
+  background: #0284c7;
+}
 .tag.rmc {
-  background-color: #7c3aed;
-} /* Roxo */
+  background: #7c3aed;
+}
 .tag.emp {
-  background-color: #16a34a;
-} /* Verde */
+  background: #16a34a;
+}
 .tag.as {
-  background-color: #d97706;
-} /* Laranja */
+  background: #d97706;
+}
 .tag.compra {
-  background-color: #dc2626;
-} /* Vermelho */
-
-/* ===== AJUSTES PARA TV ===== */
-html,
-body {
-  filter: none;
-} /* o filtro deixa a imagem lavada e pesa */
-body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1280px;
-  height: 720px;
-  transform-origin: 0 0;
-}
-main {
-  width: 1280px;
-  height: 655px;
-}
-
-/* fontes maiores */
-.empresa h1 {
-  font-size: 30px;
-}
-.principal h2 {
-  font-size: 22px;
-}
-thead th {
-  font-size: 20px;
-}
-tbody td {
-  font-size: 22px;
-}
-.box li {
-  font-size: 18px;
-}
-
-/* GOV SP – hoje o rodapé de diretrizes é cortado */
-.govsp-card .gov-item {
-  padding: 8px 14px;
-}
-.govsp-card .gov-item h4 {
-  font-size: 20px;
-}
-.govsp-card .gov-item p {
-  font-size: 17px;
-}
-.govsp-card .gov-observacoes {
-  padding: 10px 14px;
-  margin-top: 8px;
-}
-.govsp-card .gov-observacoes h3 {
-  font-size: 22px;
-}
-.govsp-card .gov-observacoes li {
-  font-size: 18px;
-  line-height: 1.3;
-}
-
-/* Margens (3x3) */
-.margem-card .principal tbody td,
-.card.margem-mg-card .principal tbody td {
-  font-size: 19px;
-  padding: 5px 4px;
-}
-.card.margem-mg-card .texto-longo td {
-  font-size: 16px !important;
-}
-
-/* Melhores condições / Daycoval / Ocred */
-.bloco-opcao tbody td {
-  font-size: 22px;
-}
-.bloco-regra tbody td {
-  font-size: 18px;
-}
-.bloco-ocred tbody td {
-  font-size: 20px;
-}
-.bloco-ocred table.tabela-valores tbody td {
-  font-size: 18px;
-}
-.insight-item p {
-  font-size: 17px;
-}
-
-/* Convênios por região */
-.regioes-grid {
-  grid-template-columns: 1.7fr 1fr;
-} /* só há 2 blocos */
-.bloco-regiao li {
-  font-size: 17px;
-  padding: 3px 8px;
-}
-.tag {
-  font-size: 12px;
-  padding: 1px 6px;
+  background: #dc2626;
 }
