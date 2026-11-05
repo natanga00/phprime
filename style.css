@@ -2,7 +2,8 @@
    PH PRIME PROMOTORA
    PAINEL COMERCIAL SÃO PAULO
    7 TELAS
-   RESOLUÇÃO 1280x720
+   RESOLUÇÃO BASE: 1280 x 720
+   VERSÃO COM CARDS AMPLIADOS
 ========================================= */
 
 * {
@@ -14,8 +15,8 @@
 :root {
   --bg: #071426;
   --panel: #10243c;
-  --panel2: #142c49;
-  --line: #294563;
+  --panel2: #183653;
+  --line: #315577;
 
   --white: #f8fafc;
   --blue: #60a5fa;
@@ -138,7 +139,7 @@ main {
   display: none;
   flex-direction: column;
 
-  padding: 25px 45px 20px;
+  padding: 18px 30px 18px;
 }
 
 .screen.active {
@@ -163,8 +164,8 @@ main {
 
   flex: 0 0 auto;
 
-  margin-bottom: 25px;
-  padding-bottom: 18px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
 
   border-bottom: 1px solid var(--line);
 }
@@ -174,16 +175,16 @@ main {
 
   color: var(--cyan);
 
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 
   letter-spacing: 3px;
 
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .screen-heading h2 {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 800;
   line-height: 1.2;
 }
@@ -191,106 +192,127 @@ main {
 .screen-heading p {
   color: #bfdbfe;
 
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
 
   letter-spacing: 2px;
 
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
-/* LISTA DE BANCOS */
+/* =========================================
+   CARDS DOS BANCOS
+========================================= */
 
 .bank-list {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1190px;
 
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
 
-  gap: 12px;
+  gap: 10px;
 
   flex: 1;
+  min-height: 0;
+
   justify-content: center;
+  align-items: stretch;
 }
 
 .bank-item {
-  min-height: 72px;
+  width: 100%;
+
+  flex: 1 1 0;
+  min-height: 65px;
+  max-height: 116px;
 
   display: flex;
   align-items: center;
 
-  gap: 20px;
+  gap: 24px;
 
-  padding: 10px 22px;
+  padding: 12px 28px;
 
-  background: linear-gradient(110deg, #173454, #10243c);
+  background: linear-gradient(110deg, #193c5e, #10243c);
 
-  border: 1px solid #315577;
-  border-radius: 12px;
+  border: 1px solid #396184;
+  border-radius: 14px;
 
-  box-shadow: 0 5px 15px #0004;
+  box-shadow: 0 6px 18px #0005;
 }
 
+/* NUMERAÇÃO */
+
 .rank {
-  width: 48px;
-  height: 48px;
+  width: 62px;
+  height: 62px;
 
   display: grid;
   place-items: center;
 
   flex-shrink: 0;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   background: #1d4770;
 
   color: #93c5fd;
 
-  font-size: 19px;
+  font-size: 25px;
   font-weight: 800;
 }
 
+/* NOME DO BANCO */
+
 .bank-info {
   flex: 1;
+  min-width: 0;
 }
 
 .bank-info h3 {
   color: #ffffff;
 
-  font-size: 22px;
+  font-size: 29px;
   font-weight: 800;
+
+  line-height: 1.15;
 }
 
 .bank-info p {
-  color: #b7c7d9;
+  color: #c7d8e9;
 
-  font-size: 14px;
-  margin-top: 3px;
+  font-size: 19px;
+  margin-top: 5px;
 }
 
 .bank-info p strong {
-  color: #f8fafc;
+  color: #ffffff;
+  font-weight: 800;
 }
 
-.commission {
-  min-width: 125px;
+/* COMISSÃO */
 
-  padding: 8px 15px;
+.commission {
+  min-width: 160px;
+
+  padding: 10px 16px;
 
   text-align: center;
 
-  border-radius: 9px;
+  border-radius: 11px;
 
   background: #123e38;
   border: 1px solid #26745e;
 
   color: var(--green);
 
-  font-size: 23px;
+  font-size: 32px;
   font-weight: 800;
+
+  line-height: 1.1;
 }
 
 .commission::before {
@@ -298,28 +320,38 @@ main {
 
   display: block;
 
-  font-size: 9px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
 
   color: #a7f3d0;
+
+  margin-bottom: 4px;
 }
 
+/* COMISSÃO NÃO INFORMADA */
+
 .commission.unknown {
+  min-width: 185px;
+
   background: #3c3218;
-  border-color: #8b6b1a;
+  border-color: #a17a16;
 
   color: var(--gold);
 
-  font-size: 13px;
+  font-size: 16px;
+}
+
+.commission.unknown::before {
+  color: #ffe082;
 }
 
 /* LEGENDA */
 
 .legend {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1190px;
 
-  margin: 15px auto 0;
+  margin: 12px auto 0;
 
   display: flex;
   justify-content: space-between;
@@ -332,7 +364,7 @@ main {
 
   color: #bfdbfe;
 
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .legend strong {
@@ -342,14 +374,14 @@ main {
 /* AVISO */
 
 .warning {
-  max-width: 1050px;
+  max-width: 1190px;
   width: 100%;
 
-  margin: 15px auto 0;
+  margin: 12px auto 0;
 
-  padding: 15px;
+  padding: 16px;
 
-  border-radius: 9px;
+  border-radius: 10px;
 
   background: #3c3218;
 
@@ -359,27 +391,30 @@ main {
 
   text-align: center;
 
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 800;
 }
 
-/* TELA DE IDADES */
+/* =========================================
+   TELA DE IDADES MÁXIMAS
+========================================= */
 
 .ages {
-  padding-top: 17px;
+  padding-top: 14px;
+  padding-bottom: 12px;
 }
 
 .ages .screen-heading {
-  margin-bottom: 12px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .ages .screen-heading h2 {
-  font-size: 29px;
+  font-size: 32px;
 }
 
 .ages .screen-heading p {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .age-grid {
@@ -415,14 +450,14 @@ main {
 }
 
 .age-item strong {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
 }
 
 .age-item span {
   color: var(--green);
 
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 
   text-align: right;
@@ -448,13 +483,13 @@ main {
 
 .guidelines h3 {
   color: var(--cyan);
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 3px;
 }
 
 .guidelines p {
   color: #d7e3ef;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.4;
 }
 
@@ -481,4 +516,42 @@ main {
 
 body.paused #barraProgresso {
   opacity: 0.35;
+}
+
+/* =========================================
+   AJUSTES PARA TELAS MENORES
+========================================= */
+
+@media (max-height: 650px) {
+  .screen {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .screen-heading {
+    margin-bottom: 9px;
+    padding-bottom: 8px;
+  }
+
+  .bank-item {
+    min-height: 58px;
+    padding: 7px 20px;
+  }
+
+  .rank {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bank-info h3 {
+    font-size: 25px;
+  }
+
+  .bank-info p {
+    font-size: 16px;
+  }
+
+  .commission {
+    font-size: 27px;
+  }
 }
