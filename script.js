@@ -1,26 +1,35 @@
 /* =========================================
    PH PRIME PROMOTORA
-   CONTROLE DO PAINEL
-   2 TELAS
+   PAINEL COMERCIAL SÃO PAULO
+
+   7 TELAS:
+   1 - SPPREV
+   2 - PM SP
+   3 - SEFAZ EDUCAÇÃO
+   4 - SEFAZ TEMPORÁRIO
+   5 - SEFAZ AGENTE E SAÚDE
+   6 - CELETISTA
+   7 - IDADES MÁXIMAS
+
    ROTAÇÃO AUTOMÁTICA
    RELÓGIO
    TECLADO
-   ESCALA RESPONSIVA
+   TELA CHEIA
 ========================================= */
 
 (() => {
   "use strict";
 
-  // TEMPO DE CADA TELA EM SEGUNDOS
+  // TEMPO DE CADA TELA
   const DURACAO = 30;
 
-  // RESOLUÇÃO BASE DO PAINEL
+  // RESOLUÇÃO BASE
   const PALCO = {
     largura: 1280,
     altura: 720,
   };
 
-  // ELEMENTOS DO HTML
+  // CAPTURA AS TELAS
   const telas = [...document.querySelectorAll("main .screen")];
 
   const hora = document.getElementById("hora");
@@ -30,13 +39,15 @@
   const barra = document.getElementById("barraProgresso");
 
   // VERIFICA SE EXISTEM TELAS
+
   if (!telas.length) {
     console.error("[PH Prime] Nenhuma tela encontrada.");
 
     return;
   }
 
-  // VARIÁVEIS DE CONTROLE
+  // VARIÁVEIS
+
   let atual = 0;
 
   let decorrido = 0;
@@ -45,16 +56,14 @@
 
   let ultimo = performance.now();
 
-  // =========================================
-  // FORMATAÇÃO DE NÚMEROS
-  // =========================================
+  // FORMATAÇÃO
 
   const pad = (numero) => {
     return String(numero).padStart(2, "0");
   };
 
   // =========================================
-  // ATUALIZAÇÃO DO RELÓGIO
+  // RELÓGIO
   // =========================================
 
   function atualizarHora() {
@@ -72,7 +81,7 @@
   }
 
   // =========================================
-  // ATUALIZAÇÃO DOS INDICADORES
+  // INDICADOR DE TELAS
   // =========================================
 
   function atualizarIndicador() {
@@ -81,7 +90,11 @@
     }
 
     if (barra) {
-      const percentual = Math.min(100, (decorrido / DURACAO) * 100);
+      const percentual = Math.min(
+        100,
+
+        (decorrido / DURACAO) * 100,
+      );
 
       barra.style.width = `${percentual}%`;
     }
@@ -131,16 +144,21 @@
 
   document.addEventListener("keydown", (event) => {
     // PRÓXIMA TELA
+
     if (event.key === "ArrowRight") {
+      event.preventDefault();
+
       mostrar(atual + 1);
     }
 
     // TELA ANTERIOR
     else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+
       mostrar(atual - 1);
     }
 
-    // PAUSAR / CONTINUAR
+    // PAUSAR OU CONTINUAR
     else if (event.code === "Space") {
       event.preventDefault();
 
@@ -170,7 +188,7 @@
   });
 
   // =========================================
-  // ANIMAÇÃO E ROTAÇÃO AUTOMÁTICA
+  // ROTAÇÃO AUTOMÁTICA
   // =========================================
 
   function animar(agora) {
@@ -185,7 +203,6 @@
     if (!pausado) {
       decorrido += delta;
 
-      // PASSA PARA A PRÓXIMA TELA
       if (decorrido >= DURACAO) {
         mostrar(atual + 1);
       } else {
@@ -210,13 +227,16 @@
     ultimo = performance.now();
   });
 
-  // COMEÇA NA PRIMEIRA TELA
+  // INICIA NA PRIMEIRA TELA
+
   mostrar(0);
 
-  // AJUSTA PARA O TAMANHO DA TELA
+  // AJUSTA O TAMANHO
+
   escala();
 
-  // INICIA A ANIMAÇÃO
+  // INICIA A ROTAÇÃO
+
   requestAnimationFrame(animar);
 
   // =========================================
